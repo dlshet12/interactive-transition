@@ -1,0 +1,164 @@
+.scroll-container {
+    position: relative;
+    width: 100%;
+    background-color: black;
+  }
+  
+  .scroll-spacer {
+    height: 200vh;
+  }
+  
+  .animation-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-image: url('../asset/first_gradient.png');
+background-repeat: no-repeat;
+    transition: background 0.8s ease-out;
+  }
+  
+  .animation-container.next-level {
+    background: linear-gradient(248deg, #1A0D61 0.94%, #480525 98.89%);
+  }
+  
+  .circle-container {
+    position: relative;
+    transition: all 0.8s ease-out;
+  }
+  
+  .circle-container.move-to-sun {
+    transform: translate(40vw, -30vh) scale(0.8);
+  }
+  
+  .circle {
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out, opacity 0.8s ease-out;
+  }
+  
+  .sun {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.8s ease-out;
+  
+  }
+  
+  .circle.clicked {
+    transform: scale(0.95);
+    animation: pulseClick 0.3s ease-out;
+  }
+  
+  @keyframes pulseClick {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.95); }
+    100% { transform: scale(1); }
+  }
+  
+  .hand-container {
+    position: absolute;
+    pointer-events: none;
+    transition: transform 0.4s ease-out, opacity 0.8s ease-out;
+  }
+  
+  .hand-container.clicked {
+    transform: translateY(152px) !important;
+    transition: transform 0.3s ease-out;
+  }
+  
+  .hand-image {
+    object-fit: contain;
+  }
+  
+  .text-overlay, .next-level-text {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    opacity: 0;
+    transition: opacity 0.8s ease-out;
+    pointer-events: none;
+  }
+  
+  .next-level-text {
+    position: absolute;
+    top: 60%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    opacity: 0;
+    transition: opacity 0.8s ease-out;
+    pointer-events: none;
+
+    transform: translate(-50%, -50%) translateY(20px);
+    transition: all 0.8s ease-out;
+  }
+  
+  
+  .next-level-text.show {
+    opacity: 1;
+    transform: translate(-50%, -50%) translateY(0);
+  }
+  
+  .text-overlay.show {
+    opacity: 1;
+  }
+  .gradient {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-80%, -30%);
+ 
+    z-index: -1; /* Ensure it is behind the sun */
+    opacity: 0;
+    transition: opacity 0.8s ease-out;
+  }
+  .cloud {
+    position: absolute;
+  
+    z-index: 1; 
+    opacity: 0;
+    transition: opacity 0.8s ease-out;
+    transform: translate(-150%, -10%);
+
+  }
+  .text-line {
+    color: #FFF;
+    text-align: center;
+    font-size: 46px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    margin-bottom: 8px;
+    opacity: 0;
+    transition: all 0.5s ease-out;
+  }
+  
+  .text-genius {
+    color: #FFF;
+    font-size: 100px;
+    font-style: italic;
+    font-weight: 300;
+    line-height: normal;
+    text-transform: uppercase;
+    opacity: 0;
+    transition: all 0.5s ease-out 0.2s;
+  }
+  
+  .text-overlay.show .text-line,
+  .text-overlay.show .text-genius,
+  .next-level-text.show .text-line,
+  .next-level-text.show .text-genius {
+    transform: translateY(0);
+    opacity: 1;
+  };

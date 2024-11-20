@@ -1,0 +1,51 @@
+.second-scene-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to bottom, #ef4444, #f97316);
+  transition: background 1s ease-out;
+ 
+  }
+  
+  .bg-transition {
+    background: linear-gradient(to bottom, #f97316, #facc15);
+  }
+  
+  .sun-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 1s ease, opacity 1s ease;
+  }
+  
+  .sun-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 150px;
+    height: 150px;
+    opacity: 0;
+    transition: opacity 1s ease-out;
+  }
+  
+  .sun-active {
+    opacity: 1;
+  }
+  
+  .text-next-level {
+    position: relative;
+    text-align: center;
+    color: white;
+    font-size: 24px;
+    opacity: 0;
+    transition: opacity 1s ease-out;
+  }
+  
+  .text-visible {
+    opacity: 1;
+  }
+  
