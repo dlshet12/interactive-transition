@@ -5,6 +5,9 @@ import circle from '../asset/circleButton.png';
 import cloud from '../asset/Cloud.png'
 import gradient from '../asset/Gradient.png';
 import completeCloud from '../asset/Cloud.svg';
+import halfFlight from '../asset/Flight.png';
+import distance from '../asset/distance.png';
+import fullFlight from '../asset/fullFlight.png'
 import './firstFold.css';
 
 const FirstFold = () => {
@@ -13,6 +16,11 @@ const FirstFold = () => {
     const [showText, setShowText] = useState(false);
     const [hasTriggered, setHasTriggered] = useState(false);
     const [showNextLevel, setShowNextLevel] = useState(false);
+    const [cloudTransition, setCloudTransition] = useState(false);
+    const [showCompleteCloud, setShowCompleteCloud] = useState(false);
+    const [showBlackStrip, setShowBlackStrip] = useState(false);
+    const [showFlight, setShowFlight] = useState(false);
+    const [showFullFlight, setShowFullFlight] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -20,28 +28,62 @@ const FirstFold = () => {
             setScrollPosition(position);
 
             // Trigger click effect when hand reaches circle (adjust threshold as needed)
-            if (position > 600 && !isClicked) {
+            if (position > 700 && !isClicked && position <= 1000) {
                 setIsClicked(true);
                 setHasTriggered(true);
                 setTimeout(() => {
                     setShowText(true);
-                }, 600);
-            }
-
-            if (position > 600) {
-                // Show "Taking digital experience to NEXT LEVEL" text
-                setShowNextLevel(true);
-                setShowText(false); // Hide "Simplicity meets GENIUS"
-            } else if (position > 300 && position <= 600) {
+                }, 300);
+                         // Show "Taking digital experience to NEXT LEVEL" text
+                        //  setShowNextLevel(true);
+                        //  setShowText(false); 
+            }else if (position > 1500) {
                 // Show "Simplicity meets GENIUS" text
-                setShowText(true);
-                setShowNextLevel(false); // Hide "Taking digital experience to NEXT LEVEL"
+                setShowText(false);
+                setShowNextLevel(true); 
             } else {
-                // Reset everything at the top of the page
+                //  of the page
                 setShowText(false);
                 setShowNextLevel(false);
                 setIsClicked(false);
                 setHasTriggered(false);
+            }
+
+            if (position > 1500  && position <= 1800) {
+
+                setCloudTransition(true); 
+                setShowCompleteCloud(false);
+            } else if (position > 2000 && position <= 2500) {
+                setCloudTransition(false); // Hide initial cloud
+                setShowCompleteCloud(true); 
+            } else if (position > 2530 && position <= 3000) {
+                setCloudTransition(false);
+                setShowCompleteCloud(true);
+                setShowBlackStrip(true); 
+                // setShowFlight(false)
+            }
+            if  (position > 3000 && position <= 4000) {
+                // setShowBlackStrip(true); 
+                setShowFullFlight(true);
+                // setShowFullFlight(false);
+              } 
+            //   else if  (position >= 4000) {
+            //     setShowFullFlight(true);
+            // }  
+               // Logic to show half-flight and transition to full-flight
+        else if (position > 1200){
+            // setShowFlight(false);
+            // setShowFullFlight(false)
+            // setShowFullFlight(true);
+        } 
+      
+             else {
+                // Reset scrolled back up
+                setCloudTransition(false);
+                setShowCompleteCloud(false);
+                setShowBlackStrip(false);
+                setShowFlight(false);
+            setShowFullFlight(false);
             }
         };
 
@@ -85,14 +127,22 @@ const FirstFold = () => {
                         <img
                             src={cloud}
                             alt="Cloud"
-                            className="cloud"
+                            className={`cloud ${cloudTransition ? 'show-cloud' : ''}`}
                             style={{
-                                opacity: showNextLevel ? 1 : 0,
+                                opacity: cloudTransition ? 1 : 0,
+                                transform: cloudTransition ? "translate(-150%, 10%)" : "translate(-150%, 10%)",
                             }}
                         />
                         <img
-                            src={circle}
-                            className={`circle ${isClicked ? 'clicked' : ''}`}
+                            src={completeCloud}
+                            alt="Complete Cloud"
+                            className={`complete-cloud ${showCompleteCloud ? 'show-complete-cloud' : ''}`}
+                            style={{
+                                opacity: showCompleteCloud ? 1 : 0,
+                            }}
+                        />
+
+  <img src={circle} className={`circle ${isClicked ? 'clicked' : ''}`}
                             style={{
                                 opacity: showNextLevel ? 0 : Math.max(1 - handOpacity, 1)
                             }}
@@ -111,7 +161,7 @@ const FirstFold = () => {
                         style={{
                             opacity: showNextLevel ? 0 : handOpacity,
                             transform: handTransform,
-                            left:'38%'
+                            left: '37%'
                         }}
                     >
                         <img
@@ -120,8 +170,34 @@ const FirstFold = () => {
                             className="hand-image"
                         />
                     </div>
+                    <div
+                        className="black-strip"
+                        style={{
+                            opacity: showBlackStrip ? 1 : 0,
+                        }}
+                    >
+                    </div>
+                    <div
+                         className={`flight-container ${showFlight ? "half-flight" : ""} ${
+                            showFullFlight ? "full-flight" : ""
+                        }`}
+                        style={{
+                            // opacity: showBlackStrip ? 1 : 0,
+                            transform: showBlackStrip ? 'translateY(0)' : 'translateY(50px)',
+                            transition: 'opacity 0.8s ease-out, transform 0.8s ease-out',
+                        }}
+                    >
+                       <img src={showFlight ? halfFlight : fullFlight} alt="Flight" />
+                    </div>
+                    <div
+    className={`distance-container ${showFullFlight ? "visible" : ""}`}
+>
+    <img src={distance} alt="Distance" />
+</div>
+
                 </div>
             </div>
+
         </div>
     );
 };

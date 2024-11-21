@@ -5,7 +5,7 @@
   }
   
   .scroll-spacer {
-    height: 200vh;
+    height: 600vh;
   }
   
   .animation-container {
@@ -38,14 +38,16 @@ background-repeat: no-repeat;
   
   .circle {
     transition: transform 0.3s ease-out, box-shadow 0.3s ease-out, opacity 0.8s ease-out;
+    height: 138px;
+    width: 138px;
   }
   
   .sun {
     position: absolute;
     top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    left: -50px;
+    width: 219px;
+    height: 219px;
     opacity: 0;
     transition: opacity 0.8s ease-out;
   
@@ -91,7 +93,7 @@ background-repeat: no-repeat;
   
   .next-level-text {
     position: absolute;
-    top: 60%;
+    top: 40%;
     left: 30%;
     transform: translate(-50%, -50%);
     text-align: center;
@@ -127,11 +129,85 @@ background-repeat: no-repeat;
     position: absolute;
   
     z-index: 1; 
+    opacity: 1;
+    transition: opacity 0.8s ease-out;
+ 
+  }
+
+
+.cloud.show-cloud {
+  opacity: 1;
+ 
+}
+
+.complete-cloud {
+  transition: opacity 0.8s ease-out;
+}
+
+.complete-cloud.show-complete-cloud {
+  opacity: 1;
+}
+
+  .black-strip {
+    position: absolute;
+    bottom: -140px;
+    right: -170px;
+    width: 1261px;
+    height: 396px;
+    transform: rotate(-24.474deg);
+    background-color: black;
     opacity: 0;
     transition: opacity 0.8s ease-out;
-    transform: translate(-150%, -10%);
-
   }
+  .flight-container {
+    position: absolute;
+    bottom: 0; /* Align it over the black strip */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10; /* Ensure it is above the black strip */
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+  .flight-container.half-flight {
+    opacity: 1;
+    transform: translateY(50px); /* Slight offset for half-flight */
+}
+
+.flight-container.full-flight {
+    opacity: 1;
+    transform: translateY(0); /* Full-flight at default position */
+}
+.distance-container {
+  position: absolute;
+  bottom: 10%; /* Adjust to align with the full-flight image */
+  left: 30%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.distance-container.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+  .flight-image {
+ 
+  }
+  
+  
+  .complete-cloud {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-80%, -15%);
+    opacity: 0;
+    z-index: 1;
+    transition: opacity 0.8s ease-out;
+  }
+  .complete-cloud.show-complete-cloud {
+    opacity: 1; /* Fades in as cloud fades out */
+}
   .text-line {
     color: #FFF;
     text-align: center;
@@ -139,7 +215,7 @@ background-repeat: no-repeat;
     font-style: normal;
     font-weight: 300;
     line-height: normal;
-    margin-bottom: 8px;
+    margin: 0;
     opacity: 0;
     transition: all 0.5s ease-out;
   }
