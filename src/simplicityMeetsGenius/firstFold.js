@@ -28,7 +28,7 @@ const FirstFold = () => {
             setScrollPosition(position);
 
             // Trigger click effect when hand reaches circle (adjust threshold as needed)
-            if (position > 700 && !isClicked && position <= 1000) {
+            if (position > 700 && !isClicked && position <= 1300) {
                 setIsClicked(true);
                 setHasTriggered(true);
                 setTimeout(() => {
