@@ -5,7 +5,7 @@
   }
   
   .scroll-spacer {
-    height: 600vh;
+    height: 1600vh;
   }
   
   .animation-container {
@@ -26,6 +26,10 @@ background-repeat: no-repeat;
   .animation-container.next-level {
     background: linear-gradient(248deg, #1A0D61 0.94%, #480525 98.89%);
   }
+  .animation-container.new-background {
+    background-image: linear-gradient(247.87deg, #000000 0.94%, #15010A 98.89%);
+    
+}
   
   .circle-container {
     position: relative;
@@ -52,11 +56,24 @@ background-repeat: no-repeat;
     transition: opacity 0.8s ease-out;
   
   }
+  .sun.center {
+    transform: translate(-300%, 50%) ; 
+    transition: transform 1s ease-out, opacity 1s ease-out;
+    opacity: 0;
+}
   
-  .circle.clicked {
-    transform: scale(0.95);
-    animation: pulseClick 0.3s ease-out;
-  }
+  .pcloudy-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-180%, -10%);
+    opacity: 0;
+    transition: opacity 1s ease-out; 
+}
+.pcloudy-container.show {
+  opacity: 1;
+}
+
   
   @keyframes pulseClick {
     0% { transform: scale(1); }
@@ -105,7 +122,20 @@ background-repeat: no-repeat;
     transform: translate(-50%, -50%) translateY(20px);
     transition: all 0.8s ease-out;
   }
-  
+  .humanize-text{
+    position: absolute;
+ 
+    color: white;
+    opacity: 0;
+    transition: opacity 0.8s ease-out;
+    pointer-events: none;
+
+    transform: translate(-50%, -50%) translateY(20px);
+    transition: all 0.8s ease-out;
+  }
+  .humanize-text.show{
+    transform: translate(-300%, 300%) translateY(20px);
+  }
   
   .next-level-text.show {
     opacity: 1;
@@ -146,6 +176,11 @@ background-repeat: no-repeat;
 
 .complete-cloud.show-complete-cloud {
   opacity: 1;
+}
+.complete-cloud.center {
+  transition: transform 1s ease-out, opacity 1s ease-out;
+  transform: translate(-290%, 50%) ; 
+  opacity: 0; 
 }
 
   .black-strip {
@@ -230,9 +265,23 @@ background-repeat: no-repeat;
     opacity: 0;
     transition: all 0.5s ease-out 0.2s;
   }
+  .humanize-text-genius{
+    color: #FFF;
+font-size: 50px;
+
+font-weight: 700;
+line-height: normal;
+text-transform: uppercase;
+    opacity: 0;
+    transition: all 0.5s ease-out 0.2s;
+    white-space: nowrap;
+  }
   
   .text-overlay.show .text-line,
   .text-overlay.show .text-genius,
+  .humanize-text.show .text-line,
+  .humanize-text.show .humanize-text-genius,
+
   .next-level-text.show .text-line,
   .next-level-text.show .text-genius {
     transform: translateY(0);

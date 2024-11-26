@@ -7,7 +7,8 @@ import gradient from '../asset/Gradient.png';
 import completeCloud from '../asset/Cloud.svg';
 import halfFlight from '../asset/Flight.png';
 import distance from '../asset/distance.png';
-import fullFlight from '../asset/fullFlight.png'
+import fullFlight from '../asset/fullFlight.png';
+import pcloudy from '../asset/pcloudy.png';
 import './firstFold.css';
 
 const FirstFold = () => {
@@ -21,69 +22,105 @@ const FirstFold = () => {
     const [showBlackStrip, setShowBlackStrip] = useState(false);
     const [showFlight, setShowFlight] = useState(false);
     const [showFullFlight, setShowFullFlight] = useState(false);
+    const [showNewBackground, setShowNewBackground] = useState(false);
+    const [showPCloudy, setShowPCloudy] = useState(false);
+    const [textNextLevel, setTextNextLevel] = useState(false);
+    const [sunCenter, setSunCenter] = useState(false);
+    const [humanizeText, setHumanizeText] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
             const position = window.scrollY;
             setScrollPosition(position);
-
-            // Trigger click effect when hand reaches circle (adjust threshold as needed)
             if (position > 700 && !isClicked && position <= 1300) {
                 setIsClicked(true);
                 setHasTriggered(true);
                 setTimeout(() => {
                     setShowText(true);
                 }, 300);
-                         // Show "Taking digital experience to NEXT LEVEL" text
-                        //  setShowNextLevel(true);
-                        //  setShowText(false); 
-            }else if (position > 1500) {
+                // Show "Taking digital experience to NEXT LEVEL" text
+                //  setShowNextLevel(true);
+                //  setShowText(false); 
+            } else if (position > 1500) {
                 // Show "Simplicity meets GENIUS" text
                 setShowText(false);
-                setShowNextLevel(true); 
+                setShowNextLevel(true);
             } else {
-                //  of the page
                 setShowText(false);
                 setShowNextLevel(false);
                 setIsClicked(false);
                 setHasTriggered(false);
             }
 
-            if (position > 1500  && position <= 1800) {
+            if (position > 1500 && position <= 1800) {
 
-                setCloudTransition(true); 
+                setCloudTransition(true);
                 setShowCompleteCloud(false);
             } else if (position > 2000 && position <= 2500) {
                 setCloudTransition(false); // Hide initial cloud
-                setShowCompleteCloud(true); 
+                setShowCompleteCloud(true);
             } else if (position > 2530 && position <= 3000) {
                 setCloudTransition(false);
                 setShowCompleteCloud(true);
-                setShowBlackStrip(true); 
+                setShowBlackStrip(true);
                 // setShowFlight(false)
             }
-            if  (position > 3000 && position <= 4000) {
+            if (position > 3000 && position <= 4000) {
                 // setShowBlackStrip(true); 
                 setShowFullFlight(true);
                 // setShowFullFlight(false);
-              } 
-            //   else if  (position >= 4000) {
-            //     setShowFullFlight(true);
-            // }  
-               // Logic to show half-flight and transition to full-flight
-        else if (position > 1200){
-            // setShowFlight(false);
-            // setShowFullFlight(false)
-            // setShowFullFlight(true);
-        } 
-      
-             else {
+            }
+            else if (position > 4000) {
+                setShowFullFlight(true);
+                setShowNewBackground(true);
+            }
+            // Logic to show half-flight and transition to full-flight
+            else if (position > 1200) {
+                // setShowFlight(false);
+                // setShowFullFlight(false)
+                // setShowFullFlight(true);
+            }
+
+            else {
                 // Reset scrolled back up
                 setCloudTransition(false);
                 setShowCompleteCloud(false);
                 setShowBlackStrip(false);
                 setShowFlight(false);
-            setShowFullFlight(false);
+                setShowFullFlight(false);
+                setShowNewBackground(false);
+            }
+
+            // Sun and complete cloud move to center
+            if (position > 4500 && position) {
+                setCloudTransition(false);
+                setShowBlackStrip(false);
+                setShowFullFlight(false);
+                setShowCompleteCloud(true);
+            } else if (position > 5000 && position <= 5500) {
+                setCloudTransition(false);
+                setShowNewBackground(true);
+
+            }
+
+            // Transition to pcloudy image
+            if (position > 5500) {
+                setSunCenter(true)
+              
+                setTextNextLevel(false)
+                setHumanizeText(true)
+
+            } else {
+         
+                setSunCenter(false);
+                setTextNextLevel(true)
+                setHumanizeText(false)
+            }
+            if (position > 5800){
+                setShowPCloudy(true);
+            }
+            else{
+                setShowPCloudy(false);  
             }
         };
 
@@ -101,103 +138,88 @@ const FirstFold = () => {
     return (
         <div className="scroll-container">
             <div className="scroll-spacer">
-                <div
-                    className={`animation-container ${showNextLevel ? 'next-level' : ''}`}
-                >
+                <div className={`animation-container ${showNextLevel ? 'next-level' : ''} ${showNewBackground ? 'new-background' : ''}`} >
                     <div className={`text-overlay ${showText ? 'show' : ''}`}>
                         <div className="text-line">Simplicity meets</div>
                         <div className="text-genius">GENIUS</div>
                     </div>
 
-                    <div className={`next-level-text ${showNextLevel ? 'show' : ''}`}>
+                    <div style={{ opacity: textNextLevel ? 1 : 0 }} className={`next-level-text ${showNextLevel ? 'show' : ''}`}>
                         <div className="text-line">Taking digital experience to</div>
                         <div className="text-genius">NEXT LEVEL</div>
                     </div>
-                    <div
-                        className={`circle-container ${showNextLevel ? 'move-to-sun' : ''}`}
-                    >
-                        <img
-                            src={gradient}
-                            alt="Gradient"
-                            className="gradient"
-                            style={{
-                                opacity: showNextLevel ? 1 : 0,
-                            }}
-                        />
-                        <img
-                            src={cloud}
-                            alt="Cloud"
-                            className={`cloud ${cloudTransition ? 'show-cloud' : ''}`}
+                 
+                 
+                    <div className={`circle-container ${showNextLevel ? 'move-to-sun' : ''}`} >
+                        <img src={gradient} alt="Gradient" className="gradient" style={{ opacity: showNextLevel ? 1 : 0, }} />
+                        <img src={cloud} alt="Cloud" className={`cloud ${cloudTransition ? 'show-cloud' : ''}`}
                             style={{
                                 opacity: cloudTransition ? 1 : 0,
                                 transform: cloudTransition ? "translate(-150%, 10%)" : "translate(-150%, 10%)",
-                            }}
-                        />
-                        <img
-                            src={completeCloud}
+                            }} />
+                        <img src={completeCloud}
                             alt="Complete Cloud"
-                            className={`complete-cloud ${showCompleteCloud ? 'show-complete-cloud' : ''}`}
+                            className={`complete-cloud ${showCompleteCloud ? 'show-complete-cloud' : ''} ${sunCenter ? 'center' : ''}`}
                             style={{
-                                opacity: showCompleteCloud ? 1 : 0,
-                            }}
-                        />
+                                opacity: sunCenter ? 0 : showCompleteCloud ? 1 : 0,
+                                transition: 'opacity 1s ease-out, transform 1s ease-out',
+                              }} />
 
-  <img src={circle} className={`circle ${isClicked ? 'clicked' : ''}`}
+                        <img src={circle} alt='circle' className={`circle ${isClicked ? 'clicked' : ''}`}
                             style={{
                                 opacity: showNextLevel ? 0 : Math.max(1 - handOpacity, 1)
                             }}
                         />
-                        <img
-                            src={sun}
-                            className="sun"
-                            style={{
-                                opacity: showNextLevel ? 1 : 0
-                            }}
+                        <img src={sun} className={`sun ${sunCenter ? 'center' : ''}`} alt='sun'
+                           style={{
+                            opacity: sunCenter  ? 0 : showNextLevel ? 1 : 0,
+                            transform: sunCenter && !showPCloudy ? 'translate(-300%, 50%)' : '',
+                            transition: 'opacity 1s ease-out, transform 1s ease-out',
+                          }}
                         />
+                           <div className={`pcloudy-container ${showPCloudy ? 'show' : ''}`}
+                        style={{
+                            opacity: showPCloudy ? 1 : 0 ,
+                            // transform: showPCloudy && sunCenter ? 'translate(-180%, -10%)' : '',
+                            transition: 'opacity 1s ease-out, transform 1s ease-out',
+                        }}>
+                        <img src={pcloudy} alt="Partially Cloudy" />
                     </div>
+                         <div style={{ opacity: humanizeText ? 1 : 0 }} className={`humanize-text ${ humanizeText? 'show' : ''}`}>
+                            <div className="text-line">Humanising</div>
+                            <div className="humanize-text-genius"><span>smart interaction</span></div>
+                        </div>
+                   
+                    </div>
+                   
 
-                    <div
-                        className={`hand-container ${isClicked ? 'clicked' : ''}`}
+                    <div className={`hand-container ${isClicked ? 'clicked' : ''}`}
                         style={{
                             opacity: showNextLevel ? 0 : handOpacity,
                             transform: handTransform,
                             left: '37%'
-                        }}
-                    >
-                        <img
-                            src={hand}
-                            alt="Reaching hand"
-                            className="hand-image"
-                        />
+                        }}>
+                        <img src={hand} alt="Reaching hand" className="hand-image" />
                     </div>
-                    <div
-                        className="black-strip"
-                        style={{
-                            opacity: showBlackStrip ? 1 : 0,
-                        }}
-                    >
+                
+                    <div className="black-strip" style={{ opacity: showBlackStrip ? 1 : 0, }} >
                     </div>
-                    <div
-                         className={`flight-container ${showFlight ? "half-flight" : ""} ${
-                            showFullFlight ? "full-flight" : ""
-                        }`}
+
+                    <div className={`flight-container ${showFlight ? "half-flight" : ""} ${showFullFlight ? "full-flight" : ""}`}
                         style={{
                             // opacity: showBlackStrip ? 1 : 0,
                             transform: showBlackStrip ? 'translateY(0)' : 'translateY(50px)',
                             transition: 'opacity 0.8s ease-out, transform 0.8s ease-out',
-                        }}
-                    >
-                       <img src={showFlight ? halfFlight : fullFlight} alt="Flight" />
+                        }} >
+                        <img src={showFlight ? halfFlight : fullFlight} alt="Flight" />
                     </div>
-                    <div
-    className={`distance-container ${showFullFlight ? "visible" : ""}`}
->
-    <img src={distance} alt="Distance" />
-</div>
-
+                    <div className={`distance-container ${showFullFlight ? "visible" : ""}`}>
+                        <img src={distance} alt="Distance" />
+                    </div>
+                 
+                 
                 </div>
             </div>
-
         </div>
     );
 };
