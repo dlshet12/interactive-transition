@@ -9,6 +9,8 @@ import halfFlight from '../asset/Flight.png';
 import distance from '../asset/distance.png';
 import fullFlight from '../asset/fullFlight.png';
 import pcloudy from '../asset/pcloudy.png';
+import cloudText from '../asset/cloudtext.png';
+import sundegree from '../asset/sun&degree.png';
 import './firstFold.css';
 
 const FirstFold = () => {
@@ -27,6 +29,8 @@ const FirstFold = () => {
     const [textNextLevel, setTextNextLevel] = useState(false);
     const [sunCenter, setSunCenter] = useState(false);
     const [humanizeText, setHumanizeText] = useState(false);
+    const [showSunDegree, setShowSunDegree] = useState(false);
+    const [thirdBg, setThirdBg] = useState(false)
 
     useEffect(() => {
         const handleScroll = () => {
@@ -82,7 +86,6 @@ const FirstFold = () => {
             }
 
             else {
-                // Reset scrolled back up
                 setCloudTransition(false);
                 setShowCompleteCloud(false);
                 setShowBlackStrip(false);
@@ -100,31 +103,41 @@ const FirstFold = () => {
             } else if (position > 5000 && position <= 5500) {
                 setCloudTransition(false);
                 setShowNewBackground(true);
-
             }
-
-            // Transition to pcloudy image
             if (position > 5500) {
                 setSunCenter(true)
-              
                 setTextNextLevel(false)
                 setHumanizeText(true)
 
             } else {
-         
                 setSunCenter(false);
                 setTextNextLevel(true)
                 setHumanizeText(false)
             }
-            if (position > 5800){
+            if (position >= 5700 && position <= 6500) {
+                const newHeight = Math.min(450, ((position - 5700) / (6500 - 5700)) * 450);
+                document.querySelector('.expandable-container').style.height = `${newHeight}px`;
                 setShowPCloudy(true);
+
+            } else if (position > 6500) {
+                document.querySelector('.expandable-container').style.height = '450px';
+            } else {
+                document.querySelector('.expandable-container').style.height = '10px';
+                setShowPCloudy(false);
             }
-            else{
-                setShowPCloudy(false);  
+            if (position > 7000) {
+                setShowSunDegree(true)
+            } else{
+                setShowSunDegree(false)
             }
+            if (position > 7500){
+                setThirdBg(true);
+            }
+            else {
+                setThirdBg(false)
+            }
+
         };
-
-
         window.addEventListener('scroll', handleScroll);
         return () => {
             window.removeEventListener('scroll', handleScroll);
@@ -138,7 +151,7 @@ const FirstFold = () => {
     return (
         <div className="scroll-container">
             <div className="scroll-spacer">
-                <div className={`animation-container ${showNextLevel ? 'next-level' : ''} ${showNewBackground ? 'new-background' : ''}`} >
+                <div className={`animation-container ${showNextLevel ? 'next-level' : ''} ${showNewBackground ? 'new-background' : ''} ${thirdBg ? 'thirdBg' : ''}`} >
                     <div className={`text-overlay ${showText ? 'show' : ''}`}>
                         <div className="text-line">Simplicity meets</div>
                         <div className="text-genius">GENIUS</div>
@@ -148,8 +161,8 @@ const FirstFold = () => {
                         <div className="text-line">Taking digital experience to</div>
                         <div className="text-genius">NEXT LEVEL</div>
                     </div>
-                 
-                 
+
+
                     <div className={`circle-container ${showNextLevel ? 'move-to-sun' : ''}`} >
                         <img src={gradient} alt="Gradient" className="gradient" style={{ opacity: showNextLevel ? 1 : 0, }} />
                         <img src={cloud} alt="Cloud" className={`cloud ${cloudTransition ? 'show-cloud' : ''}`}
@@ -163,7 +176,7 @@ const FirstFold = () => {
                             style={{
                                 opacity: sunCenter ? 0 : showCompleteCloud ? 1 : 0,
                                 transition: 'opacity 1s ease-out, transform 1s ease-out',
-                              }} />
+                            }} />
 
                         <img src={circle} alt='circle' className={`circle ${isClicked ? 'clicked' : ''}`}
                             style={{
@@ -171,27 +184,60 @@ const FirstFold = () => {
                             }}
                         />
                         <img src={sun} className={`sun ${sunCenter ? 'center' : ''}`} alt='sun'
-                           style={{
-                            opacity: sunCenter  ? 0 : showNextLevel ? 1 : 0,
-                            transform: sunCenter && !showPCloudy ? 'translate(-300%, 50%)' : '',
-                            transition: 'opacity 1s ease-out, transform 1s ease-out',
-                          }}
+                            style={{
+                                opacity: sunCenter ? 0 : showNextLevel ? 1 : 0,
+                                transform: sunCenter && !showPCloudy ? 'translate(-300%, 50%)' : '',
+                                transition: 'opacity 1s ease-out, transform 1s ease-out',
+                            }}
                         />
-                           <div className={`pcloudy-container ${showPCloudy ? 'show' : ''}`}
-                        style={{
-                            opacity: showPCloudy ? 1 : 0 ,
-                            // transform: showPCloudy && sunCenter ? 'translate(-180%, -10%)' : '',
-                            transition: 'opacity 1s ease-out, transform 1s ease-out',
-                        }}>
-                        <img src={pcloudy} alt="Partially Cloudy" />
-                    </div>
-                         <div style={{ opacity: humanizeText ? 1 : 0 }} className={`humanize-text ${ humanizeText? 'show' : ''}`}>
+                        <div className={`pcloudy-container ${showPCloudy ? 'show' : ''}`}
+                            style={{
+                                opacity: showPCloudy ? 1 : 0,
+                                // transform: showPCloudy && sunCenter ? 'translate(-180%, -10%)' : '',
+                                transition: 'opacity 1s ease-out, transform 1s ease-out',
+                            }}>
+                            <img src={pcloudy} alt="Partially Cloudy" />
+                        </div>
+                        <div className={'expandable-container'} style={{ display: showPCloudy ? 'flex' : 'none', height: `${scrollPosition >= 5700 && scrollPosition <= 6500 ? Math.min(450, ((scrollPosition - 5700) / (6500 - 5700)) * 450) : scrollPosition > 6500 ? 450 : 10}px`, }}></div>
+
+                        <div className={`cloudtext-container ${showPCloudy ? 'show' : ''}`}
+                            style={{
+                                position: 'absolute',
+                                top: '260%',
+                                left: '-580%',
+                                transform: 'translate(-50%, -50%)',
+                                opacity: showPCloudy ? 1 : 0,
+                                transition: 'opacity 1s ease-out',
+                            }}>
+                            <img src={cloudText} alt="Cloud Text" />
+                        </div>
+
+                        <div className={`todays-weather ${showPCloudy ? 'show' : ''}`}
+                            style={{
+                                position: 'absolute',
+                                top: '70%',
+                                left: '-800%',
+                                opacity: showPCloudy ? 1 : 0,
+                                transition: 'opacity 1s ease-out',
+
+                            }}>
+                            <div className="weather-text">Today's Weather <br /> <span>28 March 2024 </span><br /></div>
+                            <div className="place-text"> San Franciso</div>
+                        </div>
+                        {showSunDegree && (
+                        <img
+                            src={sundegree}
+                            alt="Sun & Degree"
+                            className="sundegree-image"
+                        />
+                    )}
+                        <div style={{ opacity: humanizeText ? 1 : 0 }} className={`humanize-text ${humanizeText ? 'show' : ''}`}>
                             <div className="text-line">Humanising</div>
                             <div className="humanize-text-genius"><span>smart interaction</span></div>
                         </div>
-                   
+
                     </div>
-                   
+
 
                     <div className={`hand-container ${isClicked ? 'clicked' : ''}`}
                         style={{
@@ -201,7 +247,7 @@ const FirstFold = () => {
                         }}>
                         <img src={hand} alt="Reaching hand" className="hand-image" />
                     </div>
-                
+
                     <div className="black-strip" style={{ opacity: showBlackStrip ? 1 : 0, }} >
                     </div>
 
@@ -216,8 +262,8 @@ const FirstFold = () => {
                     <div className={`distance-container ${showFullFlight ? "visible" : ""}`}>
                         <img src={distance} alt="Distance" />
                     </div>
-                 
-                 
+
+
                 </div>
             </div>
         </div>

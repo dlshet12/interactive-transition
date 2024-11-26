@@ -1,173 +1,228 @@
 .scroll-container {
-    position: relative;
-    width: 100%;
-    background-color: black;
-  }
-  
-  .scroll-spacer {
-    height: 1600vh;
-  }
-  
-  .animation-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    background-image: url('../asset/first_gradient.png');
-background-repeat: no-repeat;
-    transition: background 0.8s ease-out;
-  }
-  
-  .animation-container.next-level {
-    background: linear-gradient(248deg, #1A0D61 0.94%, #480525 98.89%);
-  }
-  .animation-container.new-background {
-    background-image: linear-gradient(247.87deg, #000000 0.94%, #15010A 98.89%);
-    
+  position: relative;
+  width: 100%;
+  background-color: black;
 }
-  
-  .circle-container {
-    position: relative;
-    transition: all 0.8s ease-out;
-  }
-  
-  .circle-container.move-to-sun {
-    transform: translate(40vw, -30vh) scale(0.8);
-  }
-  
-  .circle {
-    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out, opacity 0.8s ease-out;
-    height: 138px;
-    width: 138px;
-  }
-  
-  .sun {
-    position: absolute;
-    top: 0;
-    left: -50px;
-    width: 219px;
-    height: 219px;
-    opacity: 0;
-    transition: opacity 0.8s ease-out;
-  
-  }
-  .sun.center {
-    transform: translate(-300%, 50%) ; 
-    transition: transform 1s ease-out, opacity 1s ease-out;
-    opacity: 0;
+
+.scroll-spacer {
+  height: 2600vh;
 }
-  
-  .pcloudy-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-180%, -10%);
-    opacity: 0;
-    transition: opacity 1s ease-out; 
+
+.animation-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-image: url('../asset/first_gradient.png');
+  background-repeat: no-repeat;
+  transition: background 0.8s ease-out;
 }
+
+.animation-container.next-level {
+  background: linear-gradient(248deg, #1A0D61 0.94%, #480525 98.89%);
+}
+
+.animation-container.new-background {
+  background-image: linear-gradient(247.87deg, #000000 0.94%, #15010A 98.89%);
+
+}
+.animation-container.thirdBg{
+  background: linear-gradient(116deg, #330A40 3.91%, #15010A 96.2%);
+}
+
+.circle-container {
+  position: relative;
+  transition: all 0.8s ease-out;
+}
+
+.circle-container.move-to-sun {
+  transform: translate(40vw, -30vh) scale(0.8);
+}
+
+.circle {
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out, opacity 0.8s ease-out;
+  height: 138px;
+  width: 138px;
+}
+
+.sun {
+  position: absolute;
+  top: 0;
+  left: -50px;
+  width: 219px;
+  height: 219px;
+  opacity: 0;
+  transition: opacity 0.8s ease-out;
+
+}
+
+.sun.center {
+  transform: translate(-300%, 50%);
+  transition: transform 1s ease-out, opacity 1s ease-out;
+  opacity: 0;
+}
+
+.pcloudy-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-180%, -10%);
+  opacity: 0;
+  transition: opacity 1s ease-out;
+}
+
 .pcloudy-container.show {
   opacity: 1;
 }
+.sundegree-image {
+  position: absolute;
+  right: -90%;
+  top: 50%;
+  transform: translateY(10%);
+  opacity: 1;
+  transition: transform 1s ease-out;
+}
+.expandable-container{
+  position: absolute;
+  /* bottom: 0; */
+  width: 844px;
+height: 10px;
+bottom: -250%;
+right: 300%;
+transition: height 0.3s ease-in-out;
+border-radius: 20px;
+border: 1px solid #FFF;
+opacity: 0.8;
+background: linear-gradient(180deg, rgba(255, 255, 255, 0.20) 0%, rgba(153, 153, 153, 0.30) 100%);
+box-shadow: 0px 28px 40px 0px rgba(0, 0, 0, 0.10);
+}
+.weather-text{
+  color: #FFF;
+font-size: 20px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+}
+.weather-text span{
+  font-weight: 400;
+  font-size: 16px;
+}
+.place-text {
+  color: #FFF;
+  font-weight: 400;
+  font-size: 20px;
+  margin-top: 20px;
+}
 
-  
-  @keyframes pulseClick {
-    0% { transform: scale(1); }
-    50% { transform: scale(0.95); }
-    100% { transform: scale(1); }
-  }
-  
-  .hand-container {
-    position: absolute;
-    pointer-events: none;
-    transition: transform 0.4s ease-out, opacity 0.8s ease-out;
-  }
-  
-  .hand-container.clicked {
-    transform: translateY(152px) !important;
-    transition: transform 0.3s ease-out;
-  }
-  
-  .hand-image {
-    object-fit: contain;
-  }
-  
-  .text-overlay, .next-level-text {
-    position: absolute;
-    top: 20%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    color: white;
-    opacity: 0;
-    transition: opacity 0.8s ease-out;
-    pointer-events: none;
-  }
-  
-  .next-level-text {
-    position: absolute;
-    top: 40%;
-    left: 30%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    color: white;
-    opacity: 0;
-    transition: opacity 0.8s ease-out;
-    pointer-events: none;
 
-    transform: translate(-50%, -50%) translateY(20px);
-    transition: all 0.8s ease-out;
+@keyframes pulseClick {
+  0% {
+    transform: scale(1);
   }
-  .humanize-text{
-    position: absolute;
- 
-    color: white;
-    opacity: 0;
-    transition: opacity 0.8s ease-out;
-    pointer-events: none;
 
-    transform: translate(-50%, -50%) translateY(20px);
-    transition: all 0.8s ease-out;
+  50% {
+    transform: scale(0.95);
   }
-  .humanize-text.show{
-    transform: translate(-300%, 300%) translateY(20px);
+
+  100% {
+    transform: scale(1);
   }
-  
-  .next-level-text.show {
-    opacity: 1;
-    transform: translate(-50%, -50%) translateY(0);
-  }
-  
-  .text-overlay.show {
-    opacity: 1;
-  }
-  .gradient {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-80%, -30%);
- 
-    z-index: -1; /* Ensure it is behind the sun */
-    opacity: 0;
-    transition: opacity 0.8s ease-out;
-  }
-  .cloud {
-    position: absolute;
-  
-    z-index: 1; 
-    opacity: 1;
-    transition: opacity 0.8s ease-out;
- 
-  }
+}
+
+.hand-container {
+  position: absolute;
+  pointer-events: none;
+  transition: transform 0.4s ease-out, opacity 0.8s ease-out;
+}
+
+.hand-container.clicked {
+  transform: translateY(152px) !important;
+  transition: transform 0.3s ease-out;
+}
+
+.hand-image {
+  object-fit: contain;
+}
+
+.text-overlay,
+.next-level-text {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  opacity: 0;
+  transition: opacity 0.8s ease-out;
+  pointer-events: none;
+}
+
+.next-level-text {
+  position: absolute;
+  top: 40%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  opacity: 0;
+  transition: opacity 0.8s ease-out;
+  pointer-events: none;
+
+  transform: translate(-50%, -50%) translateY(20px);
+  transition: all 0.8s ease-out;
+}
+
+.humanize-text {
+  position: absolute;
+  color: white;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.8s ease-out;
+}
+
+.humanize-text.show {
+  transform: translate(-300%, 300%) translateY(20px);
+}
+
+.next-level-text.show {
+  opacity: 1;
+  transform: translate(-50%, -50%) translateY(0);
+}
+
+.text-overlay.show {
+  opacity: 1;
+}
+
+.gradient {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-80%, -30%);
+
+  z-index: -1;
+  /* Ensure it is behind the sun */
+  opacity: 0;
+  transition: opacity 0.8s ease-out;
+}
+
+.cloud {
+  position: absolute;
+
+  z-index: 1;
+  opacity: 1;
+  transition: opacity 0.8s ease-out;
+
+}
 
 
 .cloud.show-cloud {
   opacity: 1;
- 
+
 }
 
 .complete-cloud {
@@ -177,44 +232,54 @@ background-repeat: no-repeat;
 .complete-cloud.show-complete-cloud {
   opacity: 1;
 }
+
 .complete-cloud.center {
   transition: transform 1s ease-out, opacity 1s ease-out;
-  transform: translate(-290%, 50%) ; 
-  opacity: 0; 
+  transform: translate(-290%, 50%);
+  opacity: 0;
 }
 
-  .black-strip {
-    position: absolute;
-    bottom: -140px;
-    right: -170px;
-    width: 1261px;
-    height: 396px;
-    transform: rotate(-24.474deg);
-    background-color: black;
-    opacity: 0;
-    transition: opacity 0.8s ease-out;
-  }
-  .flight-container {
-    position: absolute;
-    bottom: 0; /* Align it over the black strip */
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10; /* Ensure it is above the black strip */
-    opacity: 0; /* Initially hidden */
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-  }
-  .flight-container.half-flight {
-    opacity: 1;
-    transform: translateY(50px); /* Slight offset for half-flight */
+.black-strip {
+  position: absolute;
+  bottom: -140px;
+  right: -170px;
+  width: 1261px;
+  height: 396px;
+  transform: rotate(-24.474deg);
+  background-color: black;
+  opacity: 0;
+  transition: opacity 0.8s ease-out;
+}
+
+.flight-container {
+  position: absolute;
+  bottom: 0;
+  /* Align it over the black strip */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  /* Ensure it is above the black strip */
+  opacity: 0;
+  /* Initially hidden */
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.flight-container.half-flight {
+  opacity: 1;
+  transform: translateY(50px);
+  /* Slight offset for half-flight */
 }
 
 .flight-container.full-flight {
-    opacity: 1;
-    transform: translateY(0); /* Full-flight at default position */
+  opacity: 1;
+  transform: translateY(0);
+  /* Full-flight at default position */
 }
+
 .distance-container {
   position: absolute;
-  bottom: 10%; /* Adjust to align with the full-flight image */
+  bottom: 10%;
+  /* Adjust to align with the full-flight image */
   left: 30%;
   transform: translateX(-50%);
   opacity: 0;
@@ -226,64 +291,65 @@ background-repeat: no-repeat;
   transform: translateY(0);
 }
 
-  .flight-image {
- 
-  }
-  
-  
-  .complete-cloud {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-80%, -15%);
-    opacity: 0;
-    z-index: 1;
-    transition: opacity 0.8s ease-out;
-  }
-  .complete-cloud.show-complete-cloud {
-    opacity: 1; /* Fades in as cloud fades out */
+.flight-image {}
+
+
+.complete-cloud {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-80%, -15%);
+  opacity: 0;
+  z-index: 1;
+  transition: opacity 0.8s ease-out;
 }
-  .text-line {
-    color: #FFF;
-    text-align: center;
-    font-size: 46px;
-    font-style: normal;
-    font-weight: 300;
-    line-height: normal;
-    margin: 0;
-    opacity: 0;
-    transition: all 0.5s ease-out;
-  }
-  
-  .text-genius {
-    color: #FFF;
-    font-size: 100px;
-    font-style: italic;
-    font-weight: 300;
-    line-height: normal;
-    text-transform: uppercase;
-    opacity: 0;
-    transition: all 0.5s ease-out 0.2s;
-  }
-  .humanize-text-genius{
-    color: #FFF;
-font-size: 50px;
 
-font-weight: 700;
-line-height: normal;
-text-transform: uppercase;
-    opacity: 0;
-    transition: all 0.5s ease-out 0.2s;
-    white-space: nowrap;
-  }
-  
-  .text-overlay.show .text-line,
-  .text-overlay.show .text-genius,
-  .humanize-text.show .text-line,
-  .humanize-text.show .humanize-text-genius,
+.complete-cloud.show-complete-cloud {
+  opacity: 1;
+  /* Fades in as cloud fades out */
+}
 
-  .next-level-text.show .text-line,
-  .next-level-text.show .text-genius {
-    transform: translateY(0);
-    opacity: 1;
-  };
+.text-line {
+  color: #FFF;
+  text-align: center;
+  font-size: 46px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  margin: 0;
+  opacity: 0;
+  transition: all 0.5s ease-out;
+}
+
+.text-genius {
+  color: #FFF;
+  font-size: 100px;
+  font-style: italic;
+  font-weight: 300;
+  line-height: normal;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: all 0.5s ease-out 0.2s;
+}
+
+.humanize-text-genius {
+  color: #FFF;
+  font-size: 50px;
+  font-weight: 700;
+  line-height: normal;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: all 0.5s ease-out 0.2s;
+  white-space: nowrap;
+}
+
+.text-overlay.show .text-line,
+.text-overlay.show .text-genius,
+.humanize-text.show .text-line,
+.humanize-text.show .humanize-text-genius,
+
+.next-level-text.show .text-line,
+.next-level-text.show .text-genius {
+  transform: translateY(0);
+  opacity: 1;
+};
