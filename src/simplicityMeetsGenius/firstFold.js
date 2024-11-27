@@ -13,6 +13,8 @@ import cloudText from '../asset/cloudtext.png';
 import sundegree from '../asset/sun&degree.png';
 import BigSun from '../asset/Bigsun.png';
 import innerSun from '../asset/innerSun.png';
+import iphone from '../asset/iphone.png';
+import iwatch from '../asset/iwatch.png';
 import './firstFold.css';
 
 const FirstFold = () => {
@@ -34,8 +36,9 @@ const FirstFold = () => {
     const [showSunDegree, setShowSunDegree] = useState(false);
     const [thirdBg, setThirdBg] = useState(false);
     const [transitionToBigSun, setTransitionToBigSun] = useState(false);
-const [problemSolving, setProblemSolving]= useState(false);
-const [showInnerCircle, setShowInnerCircle] = useState(false);
+    const [problemSolving, setProblemSolving] = useState(false);
+    const [showInnerCircle, setShowInnerCircle] = useState(false);
+    const [showIphone, setShowIphone] = useState(false);
     useEffect(() => {
         const handleScroll = () => {
             const position = window.scrollY;
@@ -59,7 +62,6 @@ const [showInnerCircle, setShowInnerCircle] = useState(false);
                 setIsClicked(false);
                 setHasTriggered(false);
             }
-
             if (position > 1500 && position <= 1800) {
 
                 setCloudTransition(true);
@@ -88,7 +90,6 @@ const [showInnerCircle, setShowInnerCircle] = useState(false);
                 // setShowFullFlight(false)
                 // setShowFullFlight(true);
             }
-
             else {
                 setCloudTransition(false);
                 setShowCompleteCloud(false);
@@ -97,7 +98,6 @@ const [showInnerCircle, setShowInnerCircle] = useState(false);
                 setShowFullFlight(false);
                 setShowNewBackground(false);
             }
-
             // Sun and complete cloud move to center
             if (position > 4500 && position) {
                 setCloudTransition(false);
@@ -112,7 +112,6 @@ const [showInnerCircle, setShowInnerCircle] = useState(false);
                 setSunCenter(true)
                 setTextNextLevel(false)
                 setHumanizeText(true)
-
             } else {
                 setSunCenter(false);
                 setTextNextLevel(true)
@@ -142,7 +141,6 @@ const [showInnerCircle, setShowInnerCircle] = useState(false);
             }
             if (position > 7500) {
                 setTransitionToBigSun(true);
-
                 setShowSunDegree(false);
                 document.querySelector('.expandable-container').style.display = 'none';
                 document.querySelector('.cloudtext-container').style.display = 'none';
@@ -155,14 +153,17 @@ const [showInnerCircle, setShowInnerCircle] = useState(false);
                 // document.querySelector('.expandable-container').style.display = 'flex';
                 document.querySelector('.cloudtext-container').style.display = 'flex';
                 document.querySelector('.todays-weather').style.display = 'flex';
-             
             }
-if(position > 7800){
-    setShowInnerCircle(true)
-}else{
-    setShowInnerCircle(false)
-}
-
+            if (position > 7800) {
+                setShowInnerCircle(true)
+            } else {
+                setShowInnerCircle(false)
+            }
+            if (position > 8000) {
+               setShowIphone(true)
+            } else {
+                setShowIphone(false)
+            }
         };
         window.addEventListener('scroll', handleScroll);
         return () => {
@@ -170,7 +171,6 @@ if(position > 7800){
         };
     }, []);
 
-    // Calculate opacity and position based on scroll
     const handOpacity = Math.min(scrollPosition / 300, 1);
     const handTransform = `translateY(${Math.max(80 - (scrollPosition / 4), 180)}px)`;
 
@@ -182,16 +182,12 @@ if(position > 7800){
                         <div className="text-line">Simplicity meets</div>
                         <div className="text-genius">GENIUS</div>
                     </div>
-
                     <div style={{ opacity: textNextLevel ? 1 : 0 }} className={`next-level-text ${showNextLevel ? 'show' : ''}`}>
                         <div className="text-line">Taking digital experience to</div>
                         <div className="text-genius">NEXT LEVEL</div>
                     </div>
 
-
-
                     <div className={`circle-container ${showNextLevel ? 'move-to-sun' : ''}`} >
-                        {/* <img src={gradient} alt="Gradient" className="gradient" style={{ opacity: showNextLevel ? 1 : 0, }} /> */}
                         <div className="gradient" style={{ opacity: showNextLevel ? 1 : 0 }} ></div>
                         <img src={cloud} alt="Cloud" className={`cloud ${cloudTransition ? 'show-cloud' : ''}`}
                             style={{
@@ -218,7 +214,7 @@ if(position > 7800){
                                 transition: 'opacity 1s ease-out, transform 1s ease-out',
                             }}
                         />
-                               <div style={{ opacity: problemSolving ? 1 : 0,transform: 'translate(-350%, -60%) translateY(20px)' }} className={`humanize-text ${problemSolving ? 'show' : ''}`}>
+                        <div style={{ opacity: problemSolving ? 1 : 0, transform: 'translate(-350%, -60%) translateY(20px)' }} className={`humanize-text ${problemSolving ? 'show' : ''}`}>
                             <div className="text-line">Product minded</div>
                             <div className="humanize-text-genius"><span>problem solving</span></div>
                         </div>
@@ -231,25 +227,32 @@ if(position > 7800){
                         <div className={`pcloudy-container ${showPCloudy ? 'show' : ''} ${transitionToBigSun ? 'pcloudy-to-sun' : ''}`}
                             style={{
                                 opacity: showPCloudy ? 1 : 0,
-                                // transform: showPCloudy && sunCenter ? 'translate(-180%, -10%)' : '',
                                 transition: 'opacity 1s ease-out, transform 1s ease-out',
                             }}>
-                            <img src={pcloudy} alt="Partially Cloudy" style={{opacity:transitionToBigSun ? 0 : 1,  transition: 'opacity 1s ease-out, transform 1s ease-out', }}/>
-                            {/* Big Sun Image */}
-                            <img
+                            <img src={pcloudy} alt="Partially Cloudy" style={{ opacity: transitionToBigSun ? 0 : 1, transition: 'opacity 1s ease-out, transform 1s ease-out', }} />
+                           <img
                                 src={BigSun}
                                 alt="Big Sun"
                                 className={`bigsun-image ${transitionToBigSun ? 'bigsun-visible' : ''}`}
                             />
-                                {showInnerCircle && (
-        <img
-            src={innerSun}
-            alt="Inner Sun"
-            className="inner-sun"
-        />
-    )}
+                            {showInnerCircle && (
+                                <img
+                                    src={innerSun}
+                                    alt="Inner Sun"
+                                    className="inner-sun"
+                                />
+                            )}
+                                  {showIphone && (
+                                <img
+                                    src={iphone}
+                                    alt="Inner Sun"
+                                    className="iphone"
+                                />
+                            )}
+
                         </div>
-                     
+                        
+
                         <div className={'expandable-container'} style={{ display: showPCloudy ? 'flex' : 'none', height: `${scrollPosition >= 5700 && scrollPosition <= 6500 ? Math.min(450, ((scrollPosition - 5700) / (6500 - 5700)) * 450) : scrollPosition > 6500 ? 450 : 10}px`, }}></div>
 
                         <div className={`cloudtext-container ${showPCloudy ? 'show' : ''}`}
@@ -283,11 +286,7 @@ if(position > 7800){
                                 className="sundegree-image"
                             />
                         )}
-                      
-
                     </div>
-
-
                     <div className={`hand-container ${isClicked ? 'clicked' : ''}`}
                         style={{
                             opacity: showNextLevel ? 0 : handOpacity,
@@ -296,13 +295,10 @@ if(position > 7800){
                         }}>
                         <img src={hand} alt="Reaching hand" className="hand-image" />
                     </div>
-
                     <div className="black-strip" style={{ opacity: showBlackStrip ? 1 : 0, }} >
                     </div>
-
                     <div className={`flight-container ${showFlight ? "half-flight" : ""} ${showFullFlight ? "full-flight" : ""}`}
                         style={{
-                            // opacity: showBlackStrip ? 1 : 0,
                             transform: showBlackStrip ? 'translateY(0)' : 'translateY(50px)',
                             transition: 'opacity 0.8s ease-out, transform 0.8s ease-out',
                         }} >
@@ -311,8 +307,6 @@ if(position > 7800){
                     <div className={`distance-container ${showFullFlight ? "visible" : ""}`}>
                         <img src={distance} alt="Distance" />
                     </div>
-
-
                 </div>
             </div>
         </div>
