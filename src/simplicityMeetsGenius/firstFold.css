@@ -103,7 +103,15 @@
 }
 
 .bigsun-visible {
-  transform: translate(-40%, -100%) scale(0.8);
+  transform: translate(-40%, -95%) scale(0.7);
+  opacity: 1;
+}
+.inner-sun {
+  position: absolute;
+  width: 50%; /* Adjust size relative to BigSun */
+  left: 50%;
+  transform: translate(-25%, -35%);
+  transition: opacity 1s ease, transform 1s ease;
   opacity: 1;
 }
 .sundegree-image {

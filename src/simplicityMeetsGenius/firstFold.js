@@ -34,7 +34,8 @@ const FirstFold = () => {
     const [showSunDegree, setShowSunDegree] = useState(false);
     const [thirdBg, setThirdBg] = useState(false);
     const [transitionToBigSun, setTransitionToBigSun] = useState(false);
-
+const [problemSolving, setProblemSolving]= useState(false);
+const [showInnerCircle, setShowInnerCircle] = useState(false);
     useEffect(() => {
         const handleScroll = () => {
             const position = window.scrollY;
@@ -147,14 +148,20 @@ const FirstFold = () => {
                 document.querySelector('.cloudtext-container').style.display = 'none';
                 document.querySelector('.todays-weather').style.display = 'none';
                 setHumanizeText(false);
+                setProblemSolving(true)
             } else {
                 setTransitionToBigSun(false);
-
+                setProblemSolving(false)
                 // document.querySelector('.expandable-container').style.display = 'flex';
                 document.querySelector('.cloudtext-container').style.display = 'flex';
                 document.querySelector('.todays-weather').style.display = 'flex';
+             
             }
-
+if(position > 7800){
+    setShowInnerCircle(true)
+}else{
+    setShowInnerCircle(false)
+}
 
         };
         window.addEventListener('scroll', handleScroll);
@@ -180,6 +187,7 @@ const FirstFold = () => {
                         <div className="text-line">Taking digital experience to</div>
                         <div className="text-genius">NEXT LEVEL</div>
                     </div>
+
 
 
                     <div className={`circle-container ${showNextLevel ? 'move-to-sun' : ''}`} >
@@ -210,20 +218,38 @@ const FirstFold = () => {
                                 transition: 'opacity 1s ease-out, transform 1s ease-out',
                             }}
                         />
+                               <div style={{ opacity: problemSolving ? 1 : 0,transform: 'translate(-350%, -60%) translateY(20px)' }} className={`humanize-text ${problemSolving ? 'show' : ''}`}>
+                            <div className="text-line">Product minded</div>
+                            <div className="humanize-text-genius"><span>problem solving</span></div>
+                        </div>
+
+                        <div style={{ opacity: humanizeText ? 1 : 0 }} className={`humanize-text ${humanizeText ? 'show' : ''}`}>
+                            <div className="text-line">Humanising</div>
+                            <div className="humanize-text-genius"><span>smart interaction</span></div>
+                        </div>
+
                         <div className={`pcloudy-container ${showPCloudy ? 'show' : ''} ${transitionToBigSun ? 'pcloudy-to-sun' : ''}`}
                             style={{
                                 opacity: showPCloudy ? 1 : 0,
                                 // transform: showPCloudy && sunCenter ? 'translate(-180%, -10%)' : '',
                                 transition: 'opacity 1s ease-out, transform 1s ease-out',
                             }}>
-                            <img src={pcloudy} alt="Partially Cloudy" />
+                            <img src={pcloudy} alt="Partially Cloudy" style={{opacity:transitionToBigSun ? 0 : 1,  transition: 'opacity 1s ease-out, transform 1s ease-out', }}/>
                             {/* Big Sun Image */}
                             <img
                                 src={BigSun}
                                 alt="Big Sun"
                                 className={`bigsun-image ${transitionToBigSun ? 'bigsun-visible' : ''}`}
                             />
+                                {showInnerCircle && (
+        <img
+            src={innerSun}
+            alt="Inner Sun"
+            className="inner-sun"
+        />
+    )}
                         </div>
+                     
                         <div className={'expandable-container'} style={{ display: showPCloudy ? 'flex' : 'none', height: `${scrollPosition >= 5700 && scrollPosition <= 6500 ? Math.min(450, ((scrollPosition - 5700) / (6500 - 5700)) * 450) : scrollPosition > 6500 ? 450 : 10}px`, }}></div>
 
                         <div className={`cloudtext-container ${showPCloudy ? 'show' : ''}`}
@@ -257,10 +283,7 @@ const FirstFold = () => {
                                 className="sundegree-image"
                             />
                         )}
-                        <div style={{ opacity: humanizeText ? 1 : 0 }} className={`humanize-text ${humanizeText ? 'show' : ''}`}>
-                            <div className="text-line">Humanising</div>
-                            <div className="humanize-text-genius"><span>smart interaction</span></div>
-                        </div>
+                      
 
                     </div>
 
