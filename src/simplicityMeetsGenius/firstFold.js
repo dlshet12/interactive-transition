@@ -11,6 +11,8 @@ import fullFlight from '../asset/fullFlight.png';
 import pcloudy from '../asset/pcloudy.png';
 import cloudText from '../asset/cloudtext.png';
 import sundegree from '../asset/sun&degree.png';
+import BigSun from '../asset/Bigsun.png';
+import innerSun from '../asset/innerSun.png';
 import './firstFold.css';
 
 const FirstFold = () => {
@@ -30,7 +32,8 @@ const FirstFold = () => {
     const [sunCenter, setSunCenter] = useState(false);
     const [humanizeText, setHumanizeText] = useState(false);
     const [showSunDegree, setShowSunDegree] = useState(false);
-    const [thirdBg, setThirdBg] = useState(false)
+    const [thirdBg, setThirdBg] = useState(false);
+    const [transitionToBigSun, setTransitionToBigSun] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -127,15 +130,31 @@ const FirstFold = () => {
             }
             if (position > 7000) {
                 setShowSunDegree(true)
-            } else{
+            } else {
                 setShowSunDegree(false)
             }
-            if (position > 7500){
+            if (position > 7500) {
                 setThirdBg(true);
             }
             else {
                 setThirdBg(false)
             }
+            if (position > 7500) {
+                setTransitionToBigSun(true);
+
+                setShowSunDegree(false);
+                document.querySelector('.expandable-container').style.display = 'none';
+                document.querySelector('.cloudtext-container').style.display = 'none';
+                document.querySelector('.todays-weather').style.display = 'none';
+                setHumanizeText(false);
+            } else {
+                setTransitionToBigSun(false);
+
+                // document.querySelector('.expandable-container').style.display = 'flex';
+                document.querySelector('.cloudtext-container').style.display = 'flex';
+                document.querySelector('.todays-weather').style.display = 'flex';
+            }
+
 
         };
         window.addEventListener('scroll', handleScroll);
@@ -164,7 +183,8 @@ const FirstFold = () => {
 
 
                     <div className={`circle-container ${showNextLevel ? 'move-to-sun' : ''}`} >
-                        <img src={gradient} alt="Gradient" className="gradient" style={{ opacity: showNextLevel ? 1 : 0, }} />
+                        {/* <img src={gradient} alt="Gradient" className="gradient" style={{ opacity: showNextLevel ? 1 : 0, }} /> */}
+                        <div className="gradient" style={{ opacity: showNextLevel ? 1 : 0 }} ></div>
                         <img src={cloud} alt="Cloud" className={`cloud ${cloudTransition ? 'show-cloud' : ''}`}
                             style={{
                                 opacity: cloudTransition ? 1 : 0,
@@ -190,13 +210,19 @@ const FirstFold = () => {
                                 transition: 'opacity 1s ease-out, transform 1s ease-out',
                             }}
                         />
-                        <div className={`pcloudy-container ${showPCloudy ? 'show' : ''}`}
+                        <div className={`pcloudy-container ${showPCloudy ? 'show' : ''} ${transitionToBigSun ? 'pcloudy-to-sun' : ''}`}
                             style={{
                                 opacity: showPCloudy ? 1 : 0,
                                 // transform: showPCloudy && sunCenter ? 'translate(-180%, -10%)' : '',
                                 transition: 'opacity 1s ease-out, transform 1s ease-out',
                             }}>
                             <img src={pcloudy} alt="Partially Cloudy" />
+                            {/* Big Sun Image */}
+                            <img
+                                src={BigSun}
+                                alt="Big Sun"
+                                className={`bigsun-image ${transitionToBigSun ? 'bigsun-visible' : ''}`}
+                            />
                         </div>
                         <div className={'expandable-container'} style={{ display: showPCloudy ? 'flex' : 'none', height: `${scrollPosition >= 5700 && scrollPosition <= 6500 ? Math.min(450, ((scrollPosition - 5700) / (6500 - 5700)) * 450) : scrollPosition > 6500 ? 450 : 10}px`, }}></div>
 
@@ -225,12 +251,12 @@ const FirstFold = () => {
                             <div className="place-text"> San Franciso</div>
                         </div>
                         {showSunDegree && (
-                        <img
-                            src={sundegree}
-                            alt="Sun & Degree"
-                            className="sundegree-image"
-                        />
-                    )}
+                            <img
+                                src={sundegree}
+                                alt="Sun & Degree"
+                                className="sundegree-image"
+                            />
+                        )}
                         <div style={{ opacity: humanizeText ? 1 : 0 }} className={`humanize-text ${humanizeText ? 'show' : ''}`}>
                             <div className="text-line">Humanising</div>
                             <div className="humanize-text-genius"><span>smart interaction</span></div>

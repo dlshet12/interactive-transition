@@ -79,6 +79,33 @@
 .pcloudy-container.show {
   opacity: 1;
 }
+.pcloudy-to-sun {
+  transform: scale(1.9) translate(-90%, 60%);
+  opacity: 0; /* Gradually fades out */
+}
+/* .PartialCloud{
+  display: flex;
+} */
+.cloudtext-container{
+  display: flex;
+}
+.todays-weather{
+  display: flex;
+  flex-direction: column;
+}
+.bigsun-image {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0.5);
+  opacity: 0;
+  transition: all 1s ease-in-out;
+}
+
+.bigsun-visible {
+  transform: translate(-40%, -100%) scale(0.8);
+  opacity: 1;
+}
 .sundegree-image {
   position: absolute;
   right: -90%;
@@ -199,15 +226,19 @@ line-height: normal;
 }
 
 .gradient {
+  width: 820px;
+height: 820px;
+flex-shrink: 0;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-80%, -30%);
-
+  transform: translate(-60%, -50%);
   z-index: -1;
-  /* Ensure it is behind the sun */
   opacity: 0;
   transition: opacity 0.8s ease-out;
+  border-radius: 820px;
+  background: linear-gradient(180deg, #FF7BCA 0%, rgba(255, 197, 111, 0.46) 100%);
+filter: blur(250px);
 }
 
 .cloud {
