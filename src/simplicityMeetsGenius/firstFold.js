@@ -39,6 +39,10 @@ const FirstFold = () => {
     const [problemSolving, setProblemSolving] = useState(false);
     const [showInnerCircle, setShowInnerCircle] = useState(false);
     const [showIphone, setShowIphone] = useState(false);
+    const [showIwatch, setShowIwatch] = useState(false);
+    const [showFutureText, setShowFutureText] = useState(false);
+
+
     useEffect(() => {
         const handleScroll = () => {
             const position = window.scrollY;
@@ -160,9 +164,23 @@ const FirstFold = () => {
                 setShowInnerCircle(false)
             }
             if (position > 8000) {
-               setShowIphone(true)
+                setShowIphone(true)
             } else {
                 setShowIphone(false)
+            }
+            if (position > 8200) {
+                setShowIwatch(true);
+            } else {
+                setShowIwatch(false);
+            }
+
+            if (position > 8500) {
+                setShowIwatch(false);
+                setShowIphone(false);
+                setProblemSolving(false);
+                setShowFutureText(true);
+            } else {
+                setShowFutureText(false); // Hide the text when scrolling out of this range
             }
         };
         window.addEventListener('scroll', handleScroll);
@@ -186,6 +204,13 @@ const FirstFold = () => {
                         <div className="text-line">Taking digital experience to</div>
                         <div className="text-genius">NEXT LEVEL</div>
                     </div>
+                    {showFutureText && (
+                        <div className="future-text">
+                            <div className="build-text">Build future</div>
+                            <div className="with-text">WITH US</div>
+                        </div>
+                    )}
+
 
                     <div className={`circle-container ${showNextLevel ? 'move-to-sun' : ''}`} >
                         <div className="gradient" style={{ opacity: showNextLevel ? 1 : 0 }} ></div>
@@ -230,7 +255,7 @@ const FirstFold = () => {
                                 transition: 'opacity 1s ease-out, transform 1s ease-out',
                             }}>
                             <img src={pcloudy} alt="Partially Cloudy" style={{ opacity: transitionToBigSun ? 0 : 1, transition: 'opacity 1s ease-out, transform 1s ease-out', }} />
-                           <img
+                            <img
                                 src={BigSun}
                                 alt="Big Sun"
                                 className={`bigsun-image ${transitionToBigSun ? 'bigsun-visible' : ''}`}
@@ -242,16 +267,23 @@ const FirstFold = () => {
                                     className="inner-sun"
                                 />
                             )}
-                                  {showIphone && (
+                            {showIphone && (
                                 <img
                                     src={iphone}
                                     alt="Inner Sun"
                                     className="iphone"
                                 />
                             )}
+                            {showIphone && (
+                                <img
+                                    src={iwatch}
+                                    alt="iWatch"
+                                    className={`iwatch ${showIwatch ? 'show' : ''}`}
+                                />
+                            )}
 
                         </div>
-                        
+
 
                         <div className={'expandable-container'} style={{ display: showPCloudy ? 'flex' : 'none', height: `${scrollPosition >= 5700 && scrollPosition <= 6500 ? Math.min(450, ((scrollPosition - 5700) / (6500 - 5700)) * 450) : scrollPosition > 6500 ? 450 : 10}px`, }}></div>
 
