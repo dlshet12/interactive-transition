@@ -150,7 +150,10 @@
   transform:scale(1.2) translate(30%, -120%);
   opacity: 1;
 }
-
+.clock{
+  position: absolute;
+  transform:  translate(-240%, 40%);
+}
 
 .sundegree-image {
   position: absolute;

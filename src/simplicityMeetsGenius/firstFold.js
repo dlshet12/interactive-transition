@@ -15,6 +15,7 @@ import BigSun from '../asset/Bigsun.png';
 import innerSun from '../asset/innerSun.png';
 import iphone from '../asset/iphone.png';
 import iwatch from '../asset/iwatch.png';
+import watchface from '../asset/watchface.png';
 import './firstFold.css';
 
 const FirstFold = () => {
@@ -43,7 +44,7 @@ const FirstFold = () => {
     const [showFutureText, setShowFutureText] = useState(false);
     const [MoveSunCenter, setMoveSunCenter] = useState(false);
     const [showInnerSuns, setShowInnerSuns] = useState(false);
-
+const [showClock, setShowClock] = useState(false);
     useEffect(() => {
         const handleScroll = () => {
             const position = window.scrollY;
@@ -183,17 +184,20 @@ const FirstFold = () => {
             } else {
                 setShowFutureText(false); // Hide the text when scrolling out of this range
             }
-            // Move `innerSun` to the center
             if (position > 8700) {
                 setMoveSunCenter(true);
             } else {
                 setMoveSunCenter(false);
             }
-
             if (position > 9000) {
                 setShowInnerSuns(true);
             } else {
                 setShowInnerSuns(false);
+            }
+            if (position > 9300){
+                setShowClock(true);
+            }else{
+                setShowClock(false)
             }
         };
         window.addEventListener('scroll', handleScroll);
@@ -290,6 +294,7 @@ const FirstFold = () => {
                                     />
                                 </>
                             {/* // )} */}
+                        
                             {showIphone && (
                                 <img
                                     src={iphone}
@@ -305,6 +310,9 @@ const FirstFold = () => {
                                 />
                             )}
                         </div>
+                        {showClock && (
+                                <img alt='watch' className='clock' src={watchface}/>
+                            )}
                         <div className={'expandable-container'} style={{ display: showPCloudy ? 'flex' : 'none', height: `${scrollPosition >= 5700 && scrollPosition <= 6500 ? Math.min(450, ((scrollPosition - 5700) / (6500 - 5700)) * 450) : scrollPosition > 6500 ? 450 : 10}px`, }}></div>
 
                         <div className={`cloudtext-container ${showPCloudy ? 'show' : ''}`}
