@@ -41,7 +41,8 @@ const FirstFold = () => {
     const [showIphone, setShowIphone] = useState(false);
     const [showIwatch, setShowIwatch] = useState(false);
     const [showFutureText, setShowFutureText] = useState(false);
-
+    const [MoveSunCenter, setMoveSunCenter] = useState(false);
+    const [showInnerSuns, setShowInnerSuns] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -182,6 +183,18 @@ const FirstFold = () => {
             } else {
                 setShowFutureText(false); // Hide the text when scrolling out of this range
             }
+            // Move `innerSun` to the center
+            if (position > 8700) {
+                setMoveSunCenter(true);
+            } else {
+                setMoveSunCenter(false);
+            }
+
+            if (position > 9000) {
+                setShowInnerSuns(true);
+            } else {
+                setShowInnerSuns(false);
+            }
         };
         window.addEventListener('scroll', handleScroll);
         return () => {
@@ -210,8 +223,6 @@ const FirstFold = () => {
                             <div className="with-text">WITH US</div>
                         </div>
                     )}
-
-
                     <div className={`circle-container ${showNextLevel ? 'move-to-sun' : ''}`} >
                         <div className="gradient" style={{ opacity: showNextLevel ? 1 : 0 }} ></div>
                         <img src={cloud} alt="Cloud" className={`cloud ${cloudTransition ? 'show-cloud' : ''}`}
@@ -243,12 +254,10 @@ const FirstFold = () => {
                             <div className="text-line">Product minded</div>
                             <div className="humanize-text-genius"><span>problem solving</span></div>
                         </div>
-
                         <div style={{ opacity: humanizeText ? 1 : 0 }} className={`humanize-text ${humanizeText ? 'show' : ''}`}>
                             <div className="text-line">Humanising</div>
                             <div className="humanize-text-genius"><span>smart interaction</span></div>
                         </div>
-
                         <div className={`pcloudy-container ${showPCloudy ? 'show' : ''} ${transitionToBigSun ? 'pcloudy-to-sun' : ''}`}
                             style={{
                                 opacity: showPCloudy ? 1 : 0,
@@ -258,14 +267,28 @@ const FirstFold = () => {
                             <img
                                 src={BigSun}
                                 alt="Big Sun"
-                                className={`bigsun-image ${transitionToBigSun ? 'bigsun-visible' : ''}`}
+                                className={`bigsun-image ${transitionToBigSun ? 'bigsun-visible' : ''} ${MoveSunCenter ? 'hidden' : ''}`}
                             />
                             {showInnerCircle && (
                                 <img
                                     src={innerSun}
                                     alt="Inner Sun"
-                                    className="inner-sun"
+                                    className={`inner-sun main ${MoveSunCenter ? "move-to-center" : ""}`}
                                 />
+                            )}
+                            {showInnerSuns && (
+                                <>
+                                    <img
+                                        src={innerSun}
+                                        alt="Left Inner Sun"
+                                        className="inner-sun extra left"
+                                    />
+                                    <img
+                                        src={innerSun}
+                                        alt="Right Inner Sun"
+                                        className="inner-sun extra right"
+                                    />
+                                </>
                             )}
                             {showIphone && (
                                 <img
@@ -281,10 +304,7 @@ const FirstFold = () => {
                                     className={`iwatch ${showIwatch ? 'show' : ''}`}
                                 />
                             )}
-
                         </div>
-
-
                         <div className={'expandable-container'} style={{ display: showPCloudy ? 'flex' : 'none', height: `${scrollPosition >= 5700 && scrollPosition <= 6500 ? Math.min(450, ((scrollPosition - 5700) / (6500 - 5700)) * 450) : scrollPosition > 6500 ? 450 : 10}px`, }}></div>
 
                         <div className={`cloudtext-container ${showPCloudy ? 'show' : ''}`}
