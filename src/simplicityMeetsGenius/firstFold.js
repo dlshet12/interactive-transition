@@ -276,20 +276,20 @@ const FirstFold = () => {
                                     className={`inner-sun main ${MoveSunCenter ? "move-to-center" : ""}`}
                                 />
                             )}
-                            {showInnerSuns && (
+                            {/* {showInnerSuns && ( */}
                                 <>
                                     <img
                                         src={innerSun}
                                         alt="Left Inner Sun"
-                                        className="inner-sun extra left"
+                                        className={`inner-sun extra ${showInnerSuns ?  'left' : ''} `}
                                     />
                                     <img
                                         src={innerSun}
                                         alt="Right Inner Sun"
-                                        className="inner-sun extra right"
+                                        className={`inner-sun extra ${showInnerSuns ?  'right' : ''} `}
                                     />
                                 </>
-                            )}
+                            {/* // )} */}
                             {showIphone && (
                                 <img
                                     src={iphone}

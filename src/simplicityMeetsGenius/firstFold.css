@@ -115,7 +115,7 @@
   width: 50%; /* Adjust size relative to BigSun */
   left: 50%;
   transform: translate(-25%, -35%);
-  transition: opacity 1s ease, transform 1s ease;
+  transition: transform 1s ease, opacity 1s ease;
   opacity: 1;
 }
 
@@ -136,7 +136,8 @@
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: scale(0.7)translate(-50%, -50%);
+  transform: scale(1.2) translate(-50%, -120%);
+  transition: transform 1s ease-out, opacity 1s ease-out;
   opacity: 0;
 }
 
