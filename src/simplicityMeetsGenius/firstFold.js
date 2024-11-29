@@ -16,6 +16,9 @@ import innerSun from '../asset/innerSun.png';
 import iphone from '../asset/iphone.png';
 import iwatch from '../asset/iwatch.png';
 import watchface from '../asset/watchface.png';
+import mail from '../asset/mail.png';
+import message from '../asset/tooltip_2.png';
+import call from '../asset/call.png';
 import './firstFold.css';
 
 const FirstFold = () => {
@@ -44,7 +47,8 @@ const FirstFold = () => {
     const [showFutureText, setShowFutureText] = useState(false);
     const [MoveSunCenter, setMoveSunCenter] = useState(false);
     const [showInnerSuns, setShowInnerSuns] = useState(false);
-const [showClock, setShowClock] = useState(false);
+    const [showClock, setShowClock] = useState(false);
+    const [contactUs, setContactUs] = useState(false);
     useEffect(() => {
         const handleScroll = () => {
             const position = window.scrollY;
@@ -194,11 +198,23 @@ const [showClock, setShowClock] = useState(false);
             } else {
                 setShowInnerSuns(false);
             }
-            if (position > 9300){
+            if (position > 9300) {
                 setShowClock(true);
-            }else{
+            } else {
                 setShowClock(false)
             }
+            if (position > 10000) {
+                setShowClock(false);
+            }
+            if (position > 11000) {
+                setShowInnerSuns(false);
+            }
+            if (position > 13000) {
+                setContactUs(true)
+            } else {
+                setContactUs(false)
+            }
+
         };
         window.addEventListener('scroll', handleScroll);
         return () => {
@@ -281,20 +297,20 @@ const [showClock, setShowClock] = useState(false);
                                 />
                             )}
                             {/* {showInnerSuns && ( */}
-                                <>
-                                    <img
-                                        src={innerSun}
-                                        alt="Left Inner Sun"
-                                        className={`inner-sun extra ${showInnerSuns ?  'left' : ''} `}
-                                    />
-                                    <img
-                                        src={innerSun}
-                                        alt="Right Inner Sun"
-                                        className={`inner-sun extra ${showInnerSuns ?  'right' : ''} `}
-                                    />
-                                </>
+                            <>
+                                <img
+                                    src={innerSun}
+                                    alt="Left Inner Sun"
+                                    className={`inner-sun extra ${showInnerSuns ? 'left' : ''} `}
+                                />
+                                <img
+                                    src={innerSun}
+                                    alt="Right Inner Sun"
+                                    className={`inner-sun extra ${showInnerSuns ? 'right' : ''} `}
+                                />
+                            </>
                             {/* // )} */}
-                        
+
                             {showIphone && (
                                 <img
                                     src={iphone}
@@ -311,8 +327,26 @@ const [showClock, setShowClock] = useState(false);
                             )}
                         </div>
                         {showClock && (
-                                <img alt='watch' className='clock' src={watchface}/>
-                            )}
+                            <img alt='watch' className='clock' src={watchface} />
+                        )}
+
+                        {contactUs && (
+                           <div className="contact-grid">
+                           <div className="Mesg">
+                             <img src={message} alt="Message Icon" />
+                             <div className="text">Message Text</div>
+                           </div>
+                           <div className="Email">
+                             <img src={mail} alt="Mail Icon" />
+                             <div className="text">email@example.com</div>
+                           </div>
+                           <div className="call">
+                             <img src={call} alt="Call Icon" />
+                             <div className="text">+123-456-7890</div>
+                           </div>
+                         </div>
+
+                        )}
                         <div className={'expandable-container'} style={{ display: showPCloudy ? 'flex' : 'none', height: `${scrollPosition >= 5700 && scrollPosition <= 6500 ? Math.min(450, ((scrollPosition - 5700) / (6500 - 5700)) * 450) : scrollPosition > 6500 ? 450 : 10}px`, }}></div>
 
                         <div className={`cloudtext-container ${showPCloudy ? 'show' : ''}`}
