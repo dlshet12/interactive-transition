@@ -191,6 +191,7 @@ box-shadow: 0px 28px 40px 0px rgba(0, 0, 0, 0.10);
   width: 100.253px;
   height: 100.253px;
   transform: rotate(46.813deg);
+  transform-style: preserve-3d; 
   border-radius: 20px;
   background: #FFF;
   box-shadow: 0px 28px 40px 0px rgba(0, 0, 0, 0.10);
@@ -204,9 +205,12 @@ box-shadow: 0px 28px 40px 0px rgba(0, 0, 0, 0.10);
   grid-template-areas: 
     " . Email . "
     " Mesg . call ";
-  gap: 0x;
+  gap: 0;
   transition: transform 1s ease-out, opacity 1s ease-out;
-  transform: translate(-20%, 80%); /* Adjust both axes */
+  transform: translate(-20%, 80%); 
+  justify-content: space-around;
+  align-items: center;
+  /* margin: 20px auto; */
 left: -260%;
   position: relative;
 
@@ -223,6 +227,7 @@ left: -260%;
   grid-area: call;
 }
 
+
 /* General hover effect for all elements */
 .Mesg:hover,
 .call:hover,
@@ -232,21 +237,38 @@ left: -260%;
   cursor: pointer;
 }
 
-/* Text opacity on hover */
-.Mesg:hover .text,
-.call:hover .text,
-.Email:hover .text{
+/* Ensure child elements (icon and text) remain unrotated */
+.Mesg:hover .child,
+.Email:hover .child,
+.call:hover .child {
+  transform: rotate(-44deg)  scale(0.3); /* Reset rotation for children */
   opacity: 1;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
+.child {
+  transform: rotate(0deg); /* Reset inherited rotation */
+  display: flex;
+ 
+  align-items: center;
+}
 .text {
   position: absolute;
   opacity: 0;
   font-size: 14px;
   color: #333;
-  text-align: center;
+  text-align: center; 
+  left: 100%;
   transition: opacity 0.3s ease; /* Smooth text appearance */
 }
+/* Text opacity on hover */
+.Mesg:hover .text,
+.call:hover .text,
+.Email:hover .text{
+  transform: rotate(0deg);
+  opacity: 1;
+}
+
 
 .weather-text{
   color: #FFF;

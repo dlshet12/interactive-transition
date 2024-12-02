@@ -331,23 +331,29 @@ const FirstFold = () => {
                             <img alt='watch' className='clock' src={watchface} />
                         )}
 
-                        {contactUs && (
-                           <div className={`contact-grid ${contactUs ? 'show' : ''}`}>
-                           <div className="Mesg">
-                             <img src={message} alt="Message Icon" />
-                             <div className="text">Message Text</div>
-                           </div>
-                           <div className="Email">
-                             <img src={mail} alt="Mail Icon" />
-                             <div className="text">email@example.com</div>
-                           </div>
-                           <div className="call">
-                             <img src={call} alt="Call Icon" />
-                             <div className="text">+123-456-7890</div>
-                           </div>
-                         </div>
+{contactUs && (
+  <div className={`contact-grid ${contactUs ? 'show' : ''}`}>
+    <div className="Mesg">
+      <div className="child">
+        <img src={message} alt="Message Icon" />
+        <div className="text">Message Text</div>
+      </div>
+    </div>
+    <div className="Email">
+      <div className="child">
+        <img src={mail} alt="Mail Icon" />
+        <div className="text">email@example.com</div>
+      </div>
+    </div>
+    <div className="call">
+      <div className="child">
+        <img src={call} alt="Call Icon" />
+        <div className="text">+123-456-7890</div>
+      </div>
+    </div>
+  </div>
+)}
 
-                        )}
                         <div className={'expandable-container'} style={{ display: showPCloudy ? 'flex' : 'none', height: `${scrollPosition >= 5700 && scrollPosition <= 6500 ? Math.min(450, ((scrollPosition - 5700) / (6500 - 5700)) * 450) : scrollPosition > 6500 ? 450 : 10}px`, }}></div>
 
                         <div className={`cloudtext-container ${showPCloudy ? 'show' : ''}`}
