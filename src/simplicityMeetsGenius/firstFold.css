@@ -5,7 +5,7 @@
 }
 
 .scroll-spacer {
-  height: 2600vh;
+  height: 2100vh;
 }
 
 .animation-container {
@@ -205,7 +205,8 @@ box-shadow: 0px 28px 40px 0px rgba(0, 0, 0, 0.10);
     " . Email . "
     " Mesg . call ";
   gap: 0x;
-
+  transition: transform 1s ease-out, opacity 1s ease-out;
+  transform: translate(-20%, 80%); /* Adjust both axes */
 left: -260%;
   position: relative;
 

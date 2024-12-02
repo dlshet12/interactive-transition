@@ -49,6 +49,7 @@ const FirstFold = () => {
     const [showInnerSuns, setShowInnerSuns] = useState(false);
     const [showClock, setShowClock] = useState(false);
     const [contactUs, setContactUs] = useState(false);
+    
     useEffect(() => {
         const handleScroll = () => {
             const position = window.scrollY;
@@ -203,7 +204,7 @@ const FirstFold = () => {
             } else {
                 setShowClock(false)
             }
-            if (position > 10000) {
+            if (position > 11000) {
                 setShowClock(false);
             }
             if (position > 11000) {
@@ -331,7 +332,7 @@ const FirstFold = () => {
                         )}
 
                         {contactUs && (
-                           <div className="contact-grid">
+                           <div className={`contact-grid ${contactUs ? 'show' : ''}`}>
                            <div className="Mesg">
                              <img src={message} alt="Message Icon" />
                              <div className="text">Message Text</div>
