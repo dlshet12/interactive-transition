@@ -342,7 +342,7 @@ const FirstFold = () => {
                                     </div>
                                     <div className="large-msg">
                                         <img src={largemsg} alt="Message Icon Large" />
-                                        <div className="text">Message Text</div>
+                                        <div className="text">MessageText</div>
                                     </div>
                                 </div>
                                 <div className="Email">
@@ -362,11 +362,12 @@ const FirstFold = () => {
                                     </div>
                                     <div className="large-call">
                                         <img src={largecall} alt="Message Icon Large" />
-                                        <div className="text">+123-456-7890</div>
+                                        <div className="text">+1234567890</div>
                                     </div>
                                 </div>
                             </div>
                         )}
+                        
 
                         <div className={'expandable-container'} style={{ display: showPCloudy ? 'flex' : 'none', height: `${scrollPosition >= 5700 && scrollPosition <= 6500 ? Math.min(450, ((scrollPosition - 5700) / (6500 - 5700)) * 450) : scrollPosition > 6500 ? 450 : 10}px`, }}></div>
 

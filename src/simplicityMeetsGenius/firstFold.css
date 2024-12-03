@@ -205,12 +205,8 @@ box-shadow: 0px 28px 40px 0px rgba(0, 0, 0, 0.10);
     " . Email . "
     " Mesg . call ";
   gap: 5px;
-
 left: -650%;
   position: absolute;
-
-
-
 }
 
 .large-msg,
@@ -245,7 +241,7 @@ left: -650%;
   opacity: 1;
 }
 .call:hover .large-call{
-  transform: rotate(42deg)translate(5%,-19%);
+  transform: rotate(42deg)translate(4%,-19%);
   opacity: 1;
 
 }
@@ -260,7 +256,7 @@ left: -650%;
 }
 
 .child {
-  transform: rotate(0deg);
+  transform: rotate(-45deg);
   display: flex;
  
   align-items: center;
@@ -276,16 +272,16 @@ left: -650%;
 }
 .large-msg .text{
   opacity: 1;
-  transform: rotate(270deg)translate(300%,-500%);
+  transform: rotate(270deg)translate(230%,-990%);
 
 }
 .large-mail .text{
   opacity: 1;
-  transform: rotate(270deg)translate(110%,-1100%)
+  transform: rotate(270deg)translate(130%,-1100%)
 }
 
 .large-call .text{
-  transform: rotate(270deg)translate(380%,-290%);
+  transform: rotate(270deg)translate(190%,-980%);
   opacity: 1;
 }
 
