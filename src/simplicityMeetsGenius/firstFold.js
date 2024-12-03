@@ -46,6 +46,8 @@ const FirstFold = () => {
     const [problemSolving, setProblemSolving] = useState(false);
     const [showInnerCircle, setShowInnerCircle] = useState(false);
     const [showIphone, setShowIphone] = useState(false);
+    const [iphonePosition, setIphonePosition] = useState('-20%');
+    const [iwatchPosition, setwatchPosition] = useState('-10%');
     const [showIwatch, setShowIwatch] = useState(false);
     const [showFutureText, setShowFutureText] = useState(false);
     const [MoveSunCenter, setMoveSunCenter] = useState(false);
@@ -226,6 +228,27 @@ const FirstFold = () => {
         };
     }, []);
 
+    useEffect(() => {
+        if (showIphone) {
+            // Trigger the movement when showIphone is true
+            setTimeout(() => {
+                setIphonePosition('50%');
+            }, 100); // Slight delay for smoother effect
+        } else {
+            setIphonePosition('10%'); // Reset position when showIphone is false
+        }
+    }, [showIphone]);
+
+    useEffect(() => {
+        if (showIwatch) {
+            // Trigger the movement when showIphone is true
+            setTimeout(() => {
+                setwatchPosition('20%');
+            }, 100); // Slight delay for smoother effect
+        } else {
+            setwatchPosition('-10%'); // Reset position when showIphone is false
+        }
+    }, [showIwatch]);
     const handOpacity = Math.min(scrollPosition / 300, 1);
     const handTransform = `translateY(${Math.max(80 - (scrollPosition / 4), 180)}px)`;
 
@@ -318,14 +341,14 @@ const FirstFold = () => {
                                 <img
                                     src={iphone}
                                     alt="Inner Sun"
-                                    className="iphone"
+                                    className="iphone"     style={{ left: iphonePosition }}
                                 />
                             )}
-                            {showIphone && (
+                            {showIwatch && (
                                 <img
                                     src={iwatch}
                                     alt="iWatch"
-                                    className={`iwatch ${showIwatch ? 'show' : ''}`}
+                                    className="iwatch " style={{bottom: iwatchPosition}}
                                 />
                             )}
                         </div>
