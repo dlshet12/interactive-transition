@@ -20,6 +20,9 @@ import mail from '../asset/mail.png';
 import message from '../asset/tooltip_2.png';
 import call from '../asset/call.png';
 import './firstFold.css';
+import largemsg from '../asset/larger_mesg.png';
+import largemail from '../asset/larger_mail.png';
+import largecall from '../asset/larger_call.png';
 
 const FirstFold = () => {
     const [scrollPosition, setScrollPosition] = useState(0);
@@ -49,7 +52,7 @@ const FirstFold = () => {
     const [showInnerSuns, setShowInnerSuns] = useState(false);
     const [showClock, setShowClock] = useState(false);
     const [contactUs, setContactUs] = useState(false);
-    
+
     useEffect(() => {
         const handleScroll = () => {
             const position = window.scrollY;
@@ -310,7 +313,6 @@ const FirstFold = () => {
                                     className={`inner-sun extra ${showInnerSuns ? 'right' : ''} `}
                                 />
                             </>
-                            {/* // )} */}
 
                             {showIphone && (
                                 <img
@@ -331,28 +333,40 @@ const FirstFold = () => {
                             <img alt='watch' className='clock' src={watchface} />
                         )}
 
-{contactUs && (
-  <div className={`contact-grid ${contactUs ? 'show' : ''}`}>
-    <div className="Mesg">
-      <div className="child">
-        <img src={message} alt="Message Icon" />
-        <div className="text">Message Text</div>
-      </div>
-    </div>
-    <div className="Email">
-      <div className="child">
-        <img src={mail} alt="Mail Icon" />
-        <div className="text">email@example.com</div>
-      </div>
-    </div>
-    <div className="call">
-      <div className="child">
-        <img src={call} alt="Call Icon" />
-        <div className="text">+123-456-7890</div>
-      </div>
-    </div>
-  </div>
-)}
+                        {contactUs && (
+                            <div className={`contact-grid ${contactUs ? 'show' : ''}`}>
+                                <div className="Mesg">
+                                    <div className="child">
+                                        <img src={message} alt="Message Icon" />
+
+                                    </div>
+                                    <div className="large-msg">
+                                        <img src={largemsg} alt="Message Icon Large" />
+                                        <div className="text">Message Text</div>
+                                    </div>
+                                </div>
+                                <div className="Email">
+                                    <div className="child">
+                                        <img src={mail} alt="Mail Icon" />
+
+                                    </div>
+                                    <div className="large-mail">
+                                        <img src={largemail} alt="Message Icon Large" />
+                                        <div className="text">email@example.com</div>
+                                    </div>
+                                </div>
+                                <div className="call">
+                                    <div className="child">
+                                        <img src={call} alt="Call Icon" />
+
+                                    </div>
+                                    <div className="large-call">
+                                        <img src={largecall} alt="Message Icon Large" />
+                                        <div className="text">+123-456-7890</div>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
 
                         <div className={'expandable-container'} style={{ display: showPCloudy ? 'flex' : 'none', height: `${scrollPosition >= 5700 && scrollPosition <= 6500 ? Math.min(450, ((scrollPosition - 5700) / (6500 - 5700)) * 450) : scrollPosition > 6500 ? 450 : 10}px`, }}></div>
 
@@ -385,8 +399,7 @@ const FirstFold = () => {
                                 src={sundegree}
                                 alt="Sun & Degree"
                                 className="sundegree-image"
-                            />
-                        )}
+                            />  )}
                     </div>
                     <div className={`hand-container ${isClicked ? 'clicked' : ''}`}
                         style={{

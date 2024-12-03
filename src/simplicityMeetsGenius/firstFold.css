@@ -187,11 +187,10 @@ box-shadow: 0px 28px 40px 0px rgba(0, 0, 0, 0.10);
 .Mesg,
 .Email,
 .call {
-  /* position: absolute; */
+
   width: 100.253px;
   height: 100.253px;
   transform: rotate(46.813deg);
-  transform-style: preserve-3d; 
   border-radius: 20px;
   background: #FFF;
   box-shadow: 0px 28px 40px 0px rgba(0, 0, 0, 0.10);
@@ -205,16 +204,25 @@ box-shadow: 0px 28px 40px 0px rgba(0, 0, 0, 0.10);
   grid-template-areas: 
     " . Email . "
     " Mesg . call ";
-  gap: 0;
-  transition: transform 1s ease-out, opacity 1s ease-out;
-  transform: translate(-20%, 80%); 
-  justify-content: space-around;
-  align-items: center;
-  /* margin: 20px auto; */
-left: -260%;
-  position: relative;
+  gap: 5px;
+
+left: -650%;
+  position: absolute;
+
+
 
 }
+
+.large-msg,
+.large-mail,
+.large-call
+ {
+  position: absolute;
+  transform: rotate(46.813deg);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
+}
+
 .Mesg {
   grid-area: Mesg;
 }
@@ -227,27 +235,32 @@ left: -260%;
   grid-area: call;
 }
 
-
-/* General hover effect for all elements */
-.Mesg:hover,
-.call:hover,
-.Email:hover{
-  transform: rotate(46.813deg) scale(5.2);
-  box-shadow: 0px 35px 50px 0px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
+.Mesg:hover .large-msg {
+  transform: rotate(42deg)translate(3%,30%);
+  opacity: 1;
 }
 
-/* Ensure child elements (icon and text) remain unrotated */
+.Email:hover .large-mail{
+  transform: rotate(42deg)translate(-20%,5%);
+  opacity: 1;
+}
+.call:hover .large-call{
+  transform: rotate(42deg)translate(5%,-19%);
+  opacity: 1;
+
+}
+
+
 .Mesg:hover .child,
 .Email:hover .child,
 .call:hover .child {
-  transform: rotate(-44deg)  scale(0.3); /* Reset rotation for children */
+  transform: rotate(-44deg)  scale(0.3); 
   opacity: 1;
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .child {
-  transform: rotate(0deg); /* Reset inherited rotation */
+  transform: rotate(0deg);
   display: flex;
  
   align-items: center;
@@ -255,17 +268,24 @@ left: -260%;
 .text {
   position: absolute;
   opacity: 0;
-  font-size: 14px;
+  font-size: 24px;
   color: #333;
   text-align: center; 
   left: 100%;
-  transition: opacity 0.3s ease; /* Smooth text appearance */
+  transition: opacity 0.3s ease;
 }
-/* Text opacity on hover */
-.Mesg:hover .text,
-.call:hover .text,
-.Email:hover .text{
-  transform: rotate(0deg);
+.large-msg .text{
+  opacity: 1;
+  transform: rotate(270deg)translate(300%,-500%);
+
+}
+.large-mail .text{
+  opacity: 1;
+  transform: rotate(270deg)translate(110%,-1100%)
+}
+
+.large-call .text{
+  transform: rotate(270deg)translate(380%,-290%);
   opacity: 1;
 }
 
@@ -279,7 +299,7 @@ line-height: normal;
 }
 .iwatch {
   position: absolute;
-  bottom: -100px; /* Start off-screen */
+  bottom: -100px;
   left: 50%;
   transform: translate(10%, -45%);
   opacity: 0;
