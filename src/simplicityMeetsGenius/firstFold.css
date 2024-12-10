@@ -381,7 +381,7 @@ display: block;
 }
 
 .icon-box.mail:hover .hover-image {
-  transform: translate(120px, -70px) rotate(-45deg);
+  transform: translate(115px, -70px) rotate(-45deg);
 }
 
 .weather-text{
