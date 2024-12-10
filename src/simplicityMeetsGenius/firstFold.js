@@ -345,43 +345,41 @@ const FirstFold = () => {
                                 <img
                                     src={iphone}
                                     alt="Inner Sun"
-                                    className="iphone"     style={{ left: iphonePosition }}
+                                    className="iphone" style={{ left: iphonePosition }}
                                 />
                             )}
                             {showIwatch && (
                                 <img
                                     src={iwatch}
                                     alt="iWatch"
-                                    className="iwatch " style={{bottom: iwatchPosition}}
+                                    className="iwatch " style={{ bottom: iwatchPosition }}
                                 />
                             )}
                         </div>
                         {showClock && (
                             <img alt='watch' className='clock' src={watchface} />
                         )}
-
                         {contactUs &&
-                         (
-                            <div className={`contact-box ${contactUs ? 'show' : ''}`}>
-  <div className="icon-box call">
-  <img src={message} alt="Message Icon"  />
-  <img src={largemsg} alt="Message Icon Large" className="hover-image" />
-  <img src={hovermsg} className="hover-msg" />
-    </div>
-    <div className="icon-box message">
-    <img src={mail} alt="Mail Icon"/>
-    <img src={largemail} alt="Message Icon Large" className="hover-image"/>
-    <img src={hovermail} className="hover-msg" />
-    </div>
-    <div className="icon-box mail">
-    <img src={call} alt="Call Icon" />
-    <img src={largecall} alt="Message Icon Large" className="hover-image" />
-    <img src={hovercall} className="hover-msg" />
-    </div>
-                            </div>
-                         
-                        )}
-                        
+                            (
+                                <div className={`contact-box ${contactUs ? 'show' : ''}`}>
+                                    <div className="icon-box call">
+                                        <img src={message} alt="Message Icon" />
+                                        <img src={largemsg} alt="Message Icon Large" className="hover-image" />
+                                        <img src={hovermsg} className="hover-msg" />
+                                    </div>
+                                    <div className="icon-box message">
+                                        <img src={mail} alt="Mail Icon" />
+                                        <img src={largemail} alt="Message Icon Large" className="hover-image" />
+                                        <img src={hovermail} className="hover-msg" />
+                                    </div>
+                                    <div className="icon-box mail">
+                                        <img src={call} alt="Call Icon" />
+                                        <img src={largecall} alt="Message Icon Large" className="hover-image" />
+                                        <img src={hovercall} className="hover-msg" />
+                                    </div>
+                                </div>
+
+                            )}
 
                         <div className={'expandable-container'} style={{ display: showPCloudy ? 'flex' : 'none', height: `${scrollPosition >= 5700 && scrollPosition <= 6500 ? Math.min(450, ((scrollPosition - 5700) / (6500 - 5700)) * 450) : scrollPosition > 6500 ? 450 : 10}px`, }}></div>
 
@@ -414,7 +412,7 @@ const FirstFold = () => {
                                 src={sundegree}
                                 alt="Sun & Degree"
                                 className="sundegree-image"
-                            />  )}
+                            />)}
                     </div>
                     <div className={`hand-container ${isClicked ? 'clicked' : ''}`}
                         style={{
@@ -444,35 +442,35 @@ const FirstFold = () => {
 
 export default FirstFold;
 
-   // <div className={`contact-grid ${contactUs ? 'show' : ''}`}>
-                            //     <div className="Mesg">
-                            //         <div className="child">
-                            //             <img src={message} alt="Message Icon" />
+// <div className={`contact-grid ${contactUs ? 'show' : ''}`}>
+//     <div className="Mesg">
+//         <div className="child">
+//             <img src={message} alt="Message Icon" />
 
-                            //         </div>
-                            //         <div className="large-msg">
-                            //             <img src={largemsg} alt="Message Icon Large" />
-                            //             <div className="text">MessageText</div>
-                            //         </div>
-                            //     </div>
-                            //     <div className="Email">
-                            //         <div className="child">
-                            //             <img src={mail} alt="Mail Icon" />
+//         </div>
+//         <div className="large-msg">
+//             <img src={largemsg} alt="Message Icon Large" />
+//             <div className="text">MessageText</div>
+//         </div>
+//     </div>
+//     <div className="Email">
+//         <div className="child">
+//             <img src={mail} alt="Mail Icon" />
 
-                            //         </div>
-                            //         <div className="large-mail">
-                            //             <img src={largemail} alt="Message Icon Large" />
-                            //             <div className="text">email@example.com</div>
-                            //         </div>
-                            //     </div>
-                            //     <div className="call">
-                            //         <div className="child">
-                            //             <img src={call} alt="Call Icon" />
+//         </div>
+//         <div className="large-mail">
+//             <img src={largemail} alt="Message Icon Large" />
+//             <div className="text">email@example.com</div>
+//         </div>
+//     </div>
+//     <div className="call">
+//         <div className="child">
+//             <img src={call} alt="Call Icon" />
 
-                            //         </div>
-                            //         <div className="large-call">
-                            //             <img src={largecall} alt="Message Icon Large" />
-                            //             <div className="text">+1234567890</div>
-                            //         </div>
-                            //     </div>
-                            // </div>
+//         </div>
+//         <div className="large-call">
+//             <img src={largecall} alt="Message Icon Large" />
+//             <div className="text">+1234567890</div>
+//         </div>
+//     </div>
+// </div>
