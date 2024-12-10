@@ -23,6 +23,10 @@ import './firstFold.css';
 import largemsg from '../asset/larger_mesg.png';
 import largemail from '../asset/larger_mail.png';
 import largecall from '../asset/larger_call.png';
+import hovermsg from '../asset/hover1.png';
+import hovermail from '../asset/hover2.png';
+import hovercall from '../asset/hover3.png';
+
 
 const FirstFold = () => {
     const [scrollPosition, setScrollPosition] = useState(0);
@@ -356,39 +360,26 @@ const FirstFold = () => {
                             <img alt='watch' className='clock' src={watchface} />
                         )}
 
-                        {contactUs && (
-                            <div className={`contact-grid ${contactUs ? 'show' : ''}`}>
-                                <div className="Mesg">
-                                    <div className="child">
-                                        <img src={message} alt="Message Icon" />
-
-                                    </div>
-                                    <div className="large-msg">
-                                        <img src={largemsg} alt="Message Icon Large" />
-                                        <div className="text">MessageText</div>
-                                    </div>
-                                </div>
-                                <div className="Email">
-                                    <div className="child">
-                                        <img src={mail} alt="Mail Icon" />
-
-                                    </div>
-                                    <div className="large-mail">
-                                        <img src={largemail} alt="Message Icon Large" />
-                                        <div className="text">email@example.com</div>
-                                    </div>
-                                </div>
-                                <div className="call">
-                                    <div className="child">
-                                        <img src={call} alt="Call Icon" />
-
-                                    </div>
-                                    <div className="large-call">
-                                        <img src={largecall} alt="Message Icon Large" />
-                                        <div className="text">+1234567890</div>
-                                    </div>
-                                </div>
+                        {contactUs &&
+                         (
+                            <div className={`contact-box ${contactUs ? 'show' : ''}`}>
+  <div className="icon-box call">
+  <img src={message} alt="Message Icon"  />
+  <img src={largemsg} alt="Message Icon Large" className="hover-image" />
+  <img src={hovermsg} className="hover-msg" />
+    </div>
+    <div className="icon-box message">
+    <img src={mail} alt="Mail Icon"/>
+    <img src={largemail} alt="Message Icon Large" className="hover-image"/>
+    <img src={hovermail} className="hover-msg" />
+    </div>
+    <div className="icon-box mail">
+    <img src={call} alt="Call Icon" />
+    <img src={largecall} alt="Message Icon Large" className="hover-image" />
+    <img src={hovercall} className="hover-msg" />
+    </div>
                             </div>
+                         
                         )}
                         
 
@@ -452,3 +443,36 @@ const FirstFold = () => {
 };
 
 export default FirstFold;
+
+   // <div className={`contact-grid ${contactUs ? 'show' : ''}`}>
+                            //     <div className="Mesg">
+                            //         <div className="child">
+                            //             <img src={message} alt="Message Icon" />
+
+                            //         </div>
+                            //         <div className="large-msg">
+                            //             <img src={largemsg} alt="Message Icon Large" />
+                            //             <div className="text">MessageText</div>
+                            //         </div>
+                            //     </div>
+                            //     <div className="Email">
+                            //         <div className="child">
+                            //             <img src={mail} alt="Mail Icon" />
+
+                            //         </div>
+                            //         <div className="large-mail">
+                            //             <img src={largemail} alt="Message Icon Large" />
+                            //             <div className="text">email@example.com</div>
+                            //         </div>
+                            //     </div>
+                            //     <div className="call">
+                            //         <div className="child">
+                            //             <img src={call} alt="Call Icon" />
+
+                            //         </div>
+                            //         <div className="large-call">
+                            //             <img src={largecall} alt="Message Icon Large" />
+                            //             <div className="text">+1234567890</div>
+                            //         </div>
+                            //     </div>
+                            // </div>
