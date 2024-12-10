@@ -362,20 +362,22 @@ const FirstFold = () => {
                         {contactUs &&
                             (
                                 <div className={`contact-box ${contactUs ? 'show' : ''}`}>
-                                    <div className="icon-box call">
+                                    <div className="icon-box message ">
                                         <img src={message} alt="Message Icon" />
                                         <img src={largemsg} alt="Message Icon Large" className="hover-image" />
-                                        <img src={hovermsg} className="hover-msg" />
-                                    </div>
-                                    <div className="icon-box message">
-                                        <img src={mail} alt="Mail Icon" />
-                                        <img src={largemail} alt="Message Icon Large" className="hover-image" />
-                                        <img src={hovermail} className="hover-msg" />
+                               
+                                        
+                                        <img src={hovercall} className="hover-msg" />
                                     </div>
                                     <div className="icon-box mail">
+                                        <img src={mail} alt="Mail Icon" />
+                                        <img src={largemail} alt="Message Icon Large" className="hover-image" />
+                                        <img src={hovermsg} className="hover-msg" />
+                                    </div>
+                                    <div className="icon-box call">
                                         <img src={call} alt="Call Icon" />
                                         <img src={largecall} alt="Message Icon Large" className="hover-image" />
-                                        <img src={hovercall} className="hover-msg" />
+                                        <img src={hovermail} className="hover-msg" />
                                     </div>
                                 </div>
 
