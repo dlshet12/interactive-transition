@@ -30,6 +30,7 @@ import hovercall from '../asset/hover3.png';
 
 const FirstFold = () => {
     const [scrollPosition, setScrollPosition] = useState(0);
+    const [activeDotIndex, setActiveDotIndex] = useState(0);
     const [isClicked, setIsClicked] = useState(false);
     const [showText, setShowText] = useState(false);
     const [hasTriggered, setHasTriggered] = useState(false);
@@ -69,6 +70,7 @@ const FirstFold = () => {
                 setTimeout(() => {
                     setShowText(true);
                 }, 300);
+                setActiveDotIndex(0);
                 // Show "Taking digital experience to NEXT LEVEL" text
                 //  setShowNextLevel(true);
                 //  setShowText(false); 
@@ -83,7 +85,7 @@ const FirstFold = () => {
                 setHasTriggered(false);
             }
             if (position > 1500 && position <= 1800) {
-
+                setActiveDotIndex(1);
                 setCloudTransition(true);
                 setShowCompleteCloud(false);
             } else if (position > 2000 && position <= 2500) {
@@ -129,6 +131,7 @@ const FirstFold = () => {
                 setShowNewBackground(true);
             }
             if (position > 5500) {
+                setActiveDotIndex(2);
                 setSunCenter(true)
                 setTextNextLevel(false)
                 setHumanizeText(true)
@@ -138,6 +141,7 @@ const FirstFold = () => {
                 setHumanizeText(false)
             }
             if (position >= 5700 && position <= 6500) {
+          
                 const newHeight = Math.min(450, ((position - 5700) / (6500 - 5700)) * 450);
                 document.querySelector('.expandable-container').style.height = `${newHeight}px`;
                 setShowPCloudy(true);
@@ -160,6 +164,7 @@ const FirstFold = () => {
                 setThirdBg(false)
             }
             if (position > 7500) {
+                setActiveDotIndex(3);
                 setTransitionToBigSun(true);
                 setShowSunDegree(false);
                 document.querySelector('.expandable-container').style.display = 'none';
@@ -191,6 +196,7 @@ const FirstFold = () => {
             }
 
             if (position > 8500) {
+                setActiveDotIndex(4);
                 setShowIwatch(false);
                 setShowIphone(false);
                 setProblemSolving(false);
@@ -217,6 +223,7 @@ const FirstFold = () => {
                 setShowClock(false);
             }
             if (position > 11000) {
+                setActiveDotIndex(5);
                 setShowInnerSuns(false);
             }
             if (position > 13000) {
@@ -260,6 +267,18 @@ const FirstFold = () => {
         <div className="scroll-container">
             <div className="scroll-spacer">
                 <div className={`animation-container ${showNextLevel ? 'next-level' : ''} ${showNewBackground ? 'new-background' : ''} ${thirdBg ? 'thirdBg' : ''}`} >
+
+                <div className="dot-container">
+                {[...Array(6)].map((_, index) => (
+              <div
+                key={index}
+                className={`dots ${activeDotIndex === index ? 'active' : ''}`}
+              ></div>
+            ))}
+
+                </div>
+
+
                     <div className={`text-overlay ${showText ? 'show' : ''}`}>
                         <div className="text-line">Simplicity meets</div>
                         <div className="text-genius">GENIUS</div>
@@ -444,35 +463,3 @@ const FirstFold = () => {
 
 export default FirstFold;
 
-// <div className={`contact-grid ${contactUs ? 'show' : ''}`}>
-//     <div className="Mesg">
-//         <div className="child">
-//             <img src={message} alt="Message Icon" />
-
-//         </div>
-//         <div className="large-msg">
-//             <img src={largemsg} alt="Message Icon Large" />
-//             <div className="text">MessageText</div>
-//         </div>
-//     </div>
-//     <div className="Email">
-//         <div className="child">
-//             <img src={mail} alt="Mail Icon" />
-
-//         </div>
-//         <div className="large-mail">
-//             <img src={largemail} alt="Message Icon Large" />
-//             <div className="text">email@example.com</div>
-//         </div>
-//     </div>
-//     <div className="call">
-//         <div className="child">
-//             <img src={call} alt="Call Icon" />
-
-//         </div>
-//         <div className="large-call">
-//             <img src={largecall} alt="Message Icon Large" />
-//             <div className="text">+1234567890</div>
-//         </div>
-//     </div>
-// </div>

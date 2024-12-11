@@ -7,7 +7,27 @@
 .scroll-spacer {
   height: 2100vh;
 }
-
+.dot-container{
+  display:flex;
+  flex-direction:column;
+   height:180px;
+    justify-content:space-between;
+position: absolute;
+left: 4%;
+}
+.dots{
+  width: 12px;
+  height: 12px;
+  border: 4px solid white;
+  background-color: white;
+  border-radius: 50%;
+  transition: border-color 0.3s, background-color 0.3s;
+  }
+  .dots.active {
+    border-color: #faf8f8; /* Highlighted border */
+    background-color: transparent; /* Transparent inside */
+  }
+  
 .animation-container {
   position: fixed;
   top: 0;
@@ -184,106 +204,6 @@ box-shadow: 0px 28px 40px 0px rgba(0, 0, 0, 0.10);
   transform: translate(-65%, -55%);
   transition: left 1s ease-out, opacity 1s ease-out;
 }
-/* .Mesg,
-.Email,
-.call {
-
-  width: 100.253px;
-  height: 100.253px;
-  transform: rotate(46.813deg);
-  border-radius: 20px;
-  background: #FFF;
-  box-shadow: 0px 28px 40px 0px rgba(0, 0, 0, 0.10);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.contact-grid {
-  display: grid;
-  grid-template-areas: 
-    " . Email . "
-    " Mesg . call ";
-  gap: 5px;
-left: -650%;
-  position: absolute;
-}
-
-.large-msg,
-.large-mail,
-.large-call
- {
-  position: absolute;
-  transform: rotate(46.813deg);
-  transition: transform 0.3s ease, opacity 0.3s ease;
-  opacity: 0;
-}
-
-.Mesg {
-  grid-area: Mesg;
-}
-
-.Email {
-  grid-area: Email;
-}
-
-.call {
-  grid-area: call;
-}
-
-.Mesg:hover .large-msg {
-  transform: rotate(42deg)translate(3%,30%);
-  opacity: 1;
-}
-
-.Email:hover .large-mail{
-  transform: rotate(42deg)translate(-20%,5%);
-  opacity: 1;
-}
-.call:hover .large-call{
-  transform: rotate(42deg)translate(4%,-19%);
-  opacity: 1;
-
-}
-
-
-.Mesg:hover .child,
-.Email:hover .child,
-.call:hover .child {
-  transform: rotate(-44deg)  scale(0.3); 
-  opacity: 1;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-.child {
-  transform: rotate(-45deg);
-  display: flex;
- 
-  align-items: center;
-}
-.text {
-  position: absolute;
-  opacity: 0;
-  font-size: 24px;
-  color: #333;
-  text-align: center; 
-  left: 100%;
-  transition: opacity 0.3s ease;
-}
-.large-msg .text{
-  opacity: 1;
-  transform: rotate(270deg)translate(230%,-990%);
-
-}
-.large-mail .text{
-  opacity: 1;
-  transform: rotate(270deg)translate(130%,-1100%)
-}
-
-.large-call .text{
-  transform: rotate(270deg)translate(190%,-980%);
-  opacity: 1;
-} */
 
 .contact-box{
   height: 170px;
