@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import sun from '../asset/sun.png';
 import hand from '../asset/3D_hand.png';
 import circle from '../asset/circleButton.png';
-import cloud from '../asset/Cloud.png'
-import gradient from '../asset/Gradient.png';
+import clickedBUtton from '../asset/clickedButton.png';
+import cloud from '../asset/Cloud.png';
 import completeCloud from '../asset/Cloud.svg';
 import halfFlight from '../asset/Flight.png';
 import distance from '../asset/distance.png';
@@ -144,12 +144,20 @@ const FirstFold = () => {
           
                 const newHeight = Math.min(450, ((position - 5700) / (6500 - 5700)) * 450);
                 document.querySelector('.expandable-container').style.height = `${newHeight}px`;
+
+    if (newHeight === 450) {
+        document.querySelector('.expandable-container').style.backgroundColor = 'white';
+    } else {
+        document.querySelector('.expandable-container').style.backgroundColor = ''; // Reset background if not 450
+    }
                 setShowPCloudy(true);
 
             } else if (position > 6500) {
                 document.querySelector('.expandable-container').style.height = '450px';
+                document.querySelector('.expandable-container').style.backgroundColor = 'white';
             } else {
                 document.querySelector('.expandable-container').style.height = '10px';
+                document.querySelector('.expandable-container').style.backgroundColor = '';
                 setShowPCloudy(false);
             }
             if (position > 7000) {
@@ -202,7 +210,7 @@ const FirstFold = () => {
                 setProblemSolving(false);
                 setShowFutureText(true);
             } else {
-                setShowFutureText(false); // Hide the text when scrolling out of this range
+                setShowFutureText(false); 
             }
             if (position > 8700) {
                 setMoveSunCenter(true);
@@ -261,13 +269,12 @@ const FirstFold = () => {
         }
     }, [showIwatch]);
     const handOpacity = Math.min(scrollPosition / 300, 1);
-    const handTransform = `translateY(${Math.max(80 - (scrollPosition / 4), 180)}px)`;
+    const handTransform = `translateY(${Math.max(80 - (scrollPosition / 4), 200)}px)`;
 
     return (
         <div className="scroll-container">
             <div className="scroll-spacer">
                 <div className={`animation-container ${showNextLevel ? 'next-level' : ''} ${showNewBackground ? 'new-background' : ''} ${thirdBg ? 'thirdBg' : ''}`} >
-
                 <div className="dot-container">
                 {[...Array(6)].map((_, index) => (
               <div
@@ -275,10 +282,7 @@ const FirstFold = () => {
                 className={`dots ${activeDotIndex === index ? 'active' : ''}`}
               ></div>
             ))}
-
                 </div>
-
-
                     <div className={`text-overlay ${showText ? 'show' : ''}`}>
                         <div className="text-line">Simplicity meets</div>
                         <div className="text-genius">GENIUS</div>
@@ -293,7 +297,7 @@ const FirstFold = () => {
                             <div className="with-text">WITH US</div>
                         </div>
                     )}
-                    <div className={`circle-container ${showNextLevel ? 'move-to-sun' : ''}`} >
+                    <div className={`circle-container ${showNextLevel ? 'move-to-sun' : ''} ${isClicked ? 'clicked' : ''}`} >
                         <div className="gradient" style={{ opacity: showNextLevel ? 1 : 0 }} ></div>
                         <img src={cloud} alt="Cloud" className={`cloud ${cloudTransition ? 'show-cloud' : ''}`}
                             style={{
@@ -308,7 +312,7 @@ const FirstFold = () => {
                                 transition: 'opacity 1s ease-out, transform 1s ease-out',
                             }} />
 
-                        <img src={circle} alt='circle' className={`circle ${isClicked ? 'clicked' : ''}`}
+                        <img  src={isClicked ? circle : clickedBUtton} alt='circle' className={`circle ${isClicked ? 'clicked' : ''}`}
                             style={{
                                 opacity: showNextLevel ? 0 : Math.max(1 - handOpacity, 1)
                             }}
@@ -320,11 +324,11 @@ const FirstFold = () => {
                                 transition: 'opacity 1s ease-out, transform 1s ease-out',
                             }}
                         />
-                        <div style={{ opacity: problemSolving ? 1 : 0, transform: 'translate(-350%, -60%) translateY(20px)' }} className={`humanize-text ${problemSolving ? 'show' : ''}`}>
+                        <div style={{ opacity: problemSolving ? 1 : 0, transform: 'translate(-350%, -60%) translateY(-60px)' }} className={`humanize-text ${problemSolving ? 'show' : ''}`}>
                             <div className="text-line">Product minded</div>
                             <div className="humanize-text-genius"><span>problem solving</span></div>
                         </div>
-                        <div style={{ opacity: humanizeText ? 1 : 0 }} className={`humanize-text ${humanizeText ? 'show' : ''}`}>
+                        <div style={{ opacity: humanizeText ? 1 : 0 }} className={`humanize-text-smart ${humanizeText ? 'show' : ''}`}>
                             <div className="text-line">Humanising</div>
                             <div className="humanize-text-genius"><span>smart interaction</span></div>
                         </div>
@@ -346,7 +350,6 @@ const FirstFold = () => {
                                     className={`inner-sun main ${MoveSunCenter ? "move-to-center" : ""}`}
                                 />
                             )}
-                            {/* {showInnerSuns && ( */}
                             <>
                                 <img
                                     src={innerSun}
@@ -412,6 +415,7 @@ const FirstFold = () => {
                                 transform: 'translate(-50%, -50%)',
                                 opacity: showPCloudy ? 1 : 0,
                                 transition: 'opacity 1s ease-out',
+                                zIndex:'3'
                             }}>
                             <img src={cloudText} alt="Cloud Text" />
                         </div>
@@ -423,6 +427,7 @@ const FirstFold = () => {
                                 left: '-800%',
                                 opacity: showPCloudy ? 1 : 0,
                                 transition: 'opacity 1s ease-out',
+                             
 
                             }}>
                             <div className="weather-text">Today's Weather <br /> <span>28 March 2024 </span><br /></div>
