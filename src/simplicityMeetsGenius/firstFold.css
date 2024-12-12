@@ -16,8 +16,8 @@ position: absolute;
 left: 4%;
 }
 .dots{
-  width: 12px;
-  height: 12px;
+  width: 8px;
+  height: 8px;
   border: 4px solid white;
   background-color: white;
   border-radius: 50%;
@@ -56,8 +56,9 @@ left: 4%;
 }
 
 .circle-container {
-  position: relative;
+  position:  relative;
   transition: all 0.8s ease-out;
+
 }
 
 .circle-container.move-to-sun {
@@ -68,8 +69,15 @@ left: 4%;
   transition: transform 0.3s ease-out, box-shadow 0.3s ease-out, opacity 0.8s ease-out;
   height: 138px;
   width: 138px;
-}
 
+  
+}
+/* .circle-container.clicked {
+z-index: -1;
+  height: 400px;
+  width: 400px;
+  background: radial-gradient(circle,rgba(255, 255, 255, 1) 10%, rgba(255, 255, 255, 0) 70%);
+} */
 .sun {
   position: absolute;
   top: 0;
@@ -94,6 +102,7 @@ left: 4%;
   transform: translate(-180%, -10%);
   opacity: 0;
   transition: opacity 1s ease-out;
+  z-index: 2;
 }
 
 .pcloudy-container.show {
@@ -172,6 +181,7 @@ left: 4%;
 }
 .clock{
   position: absolute;
+  z-index: 4;
   transform:  translate(-240%, 40%);
 }
 
@@ -209,7 +219,8 @@ box-shadow: 0px 28px 40px 0px rgba(0, 0, 0, 0.10);
   height: 170px;
   width: 260px;
   position: absolute;
-  transform: translate(-850px, 10px)
+  transform: translate(-850px, 10px);
+  z-index: 5;
 }
 .icon-box {
   width: 100px;
@@ -305,7 +316,7 @@ display: block;
 }
 
 .weather-text{
-  color: #FFF;
+  color: #0d0d0d;
 font-size: 20px;
 font-style: normal;
 font-weight: 700;
@@ -330,7 +341,7 @@ line-height: normal;
   font-size: 16px;
 }
 .place-text {
-  color: #FFF;
+  color: #0a0909;
   font-weight: 400;
   font-size: 20px;
   margin-top: 20px;
@@ -358,7 +369,7 @@ line-height: normal;
 }
 
 .hand-container.clicked {
-  transform: translateY(152px) !important;
+  transform: translateY(182px) !important;
   transition: transform 0.3s ease-out;
 }
 
@@ -401,6 +412,20 @@ line-height: normal;
   pointer-events: none;
   transition: all 0.8s ease-out;
 }
+.humanize-text-smart{
+  position: absolute;
+  color: white;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.8s ease-out;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.humanize-text-smart.show {
+  transform: translate(-215%, 300%) translateY(20px);
+}
+
 .future-text{
   position: absolute;
   color: white;
@@ -589,7 +614,8 @@ filter: blur(250px);
 .text-overlay.show .text-genius,
 .humanize-text.show .text-line,
 .humanize-text.show .humanize-text-genius,
-
+.humanize-text-smart.show .text-line,
+.humanize-text-smart.show .humanize-text-genius,
 .next-level-text.show .text-line,
 .next-level-text.show .text-genius {
   transform: translateY(0);
