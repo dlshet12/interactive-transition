@@ -7,6 +7,11 @@
 .scroll-spacer {
   height: 2100vh;
 }
+.logo{
+  left: 2%;
+  bottom: 90%;
+  position: absolute;
+}
 .dot-container{
   display:flex;
   flex-direction:column;
@@ -221,6 +226,14 @@ box-shadow: 0px 28px 40px 0px rgba(0, 0, 0, 0.10);
   position: absolute;
   transform: translate(-850px, 10px);
   z-index: 5;
+  position: fixed;
+  bottom: -350%; 
+  opacity: 0;
+  transition: bottom 0.5s ease-out, opacity 0.5s ease-out;
+}
+.contact-box.show {
+bottom: -100%;
+opacity: 1; /* Fully visible */
 }
 .icon-box {
   width: 100px;
@@ -518,16 +531,29 @@ filter: blur(250px);
   transition: opacity 0.8s ease-out;
 }
 
+@keyframes moveFlight {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(60px); /* Adjust for desired forward movement */
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.flight {
+ 
+}
+
 .flight-container {
   position: absolute;
   bottom: 0;
-  /* Align it over the black strip */
   left: 50%;
   transform: translateX(-50%);
   z-index: 10;
-  /* Ensure it is above the black strip */
   opacity: 0;
-  /* Initially hidden */
   transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
@@ -540,6 +566,7 @@ filter: blur(250px);
 .flight-container.full-flight {
   opacity: 1;
   transform: translateY(0);
+  animation: moveFlight 2s infinite ease-in-out;
   /* Full-flight at default position */
 }
 

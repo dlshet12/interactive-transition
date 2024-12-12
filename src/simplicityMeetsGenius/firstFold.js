@@ -26,7 +26,7 @@ import largecall from '../asset/larger_call.png';
 import hovermsg from '../asset/hover1.png';
 import hovermail from '../asset/hover2.png';
 import hovercall from '../asset/hover3.png';
-
+import logo from '../asset/logo.png';
 
 const FirstFold = () => {
     const [scrollPosition, setScrollPosition] = useState(0);
@@ -141,15 +141,15 @@ const FirstFold = () => {
                 setHumanizeText(false)
             }
             if (position >= 5700 && position <= 6500) {
-          
+
                 const newHeight = Math.min(450, ((position - 5700) / (6500 - 5700)) * 450);
                 document.querySelector('.expandable-container').style.height = `${newHeight}px`;
 
-    if (newHeight === 450) {
-        document.querySelector('.expandable-container').style.backgroundColor = 'white';
-    } else {
-        document.querySelector('.expandable-container').style.backgroundColor = ''; // Reset background if not 450
-    }
+                if (newHeight === 450) {
+                    document.querySelector('.expandable-container').style.backgroundColor = 'white';
+                } else {
+                    document.querySelector('.expandable-container').style.backgroundColor = ''; // Reset background if not 450
+                }
                 setShowPCloudy(true);
 
             } else if (position > 6500) {
@@ -210,7 +210,7 @@ const FirstFold = () => {
                 setProblemSolving(false);
                 setShowFutureText(true);
             } else {
-                setShowFutureText(false); 
+                setShowFutureText(false);
             }
             if (position > 8700) {
                 setMoveSunCenter(true);
@@ -252,7 +252,7 @@ const FirstFold = () => {
             // Trigger the movement when showIphone is true
             setTimeout(() => {
                 setIphonePosition('50%');
-            }, 100); // Slight delay for smoother effect
+            }, 100); 
         } else {
             setIphonePosition('10%'); // Reset position when showIphone is false
         }
@@ -275,14 +275,15 @@ const FirstFold = () => {
         <div className="scroll-container">
             <div className="scroll-spacer">
                 <div className={`animation-container ${showNextLevel ? 'next-level' : ''} ${showNewBackground ? 'new-background' : ''} ${thirdBg ? 'thirdBg' : ''}`} >
-                <div className="dot-container">
-                {[...Array(6)].map((_, index) => (
-              <div
-                key={index}
-                className={`dots ${activeDotIndex === index ? 'active' : ''}`}
-              ></div>
-            ))}
-                </div>
+                    <div className='logo'><img src={logo}/></div>
+                    <div className="dot-container">
+                        {[...Array(6)].map((_, index) => (
+                            <div
+                                key={index}
+                                className={`dots ${activeDotIndex === index ? 'active' : ''}`}
+                            ></div>
+                        ))}
+                    </div>
                     <div className={`text-overlay ${showText ? 'show' : ''}`}>
                         <div className="text-line">Simplicity meets</div>
                         <div className="text-genius">GENIUS</div>
@@ -312,7 +313,7 @@ const FirstFold = () => {
                                 transition: 'opacity 1s ease-out, transform 1s ease-out',
                             }} />
 
-                        <img  src={isClicked ? circle : clickedBUtton} alt='circle' className={`circle ${isClicked ? 'clicked' : ''}`}
+                        <img src={isClicked ? circle : clickedBUtton} alt='circle' className={`circle ${isClicked ? 'clicked' : ''}`}
                             style={{
                                 opacity: showNextLevel ? 0 : Math.max(1 - handOpacity, 1)
                             }}
@@ -381,29 +382,28 @@ const FirstFold = () => {
                         {showClock && (
                             <img alt='watch' className='clock' src={watchface} />
                         )}
-                        {contactUs &&
-                            (
-                                <div className={`contact-box ${contactUs ? 'show' : ''}`}>
-                                    <div className="icon-box message ">
-                                        <img src={message} alt="Message Icon" />
-                                        <img src={largemsg} alt="Message Icon Large" className="hover-image" />
-                               
-                                        
-                                        <img src={hovercall} className="hover-msg" />
-                                    </div>
-                                    <div className="icon-box mail">
-                                        <img src={mail} alt="Mail Icon" />
-                                        <img src={largemail} alt="Message Icon Large" className="hover-image" />
-                                        <img src={hovermsg} className="hover-msg" />
-                                    </div>
-                                    <div className="icon-box call">
-                                        <img src={call} alt="Call Icon" />
-                                        <img src={largecall} alt="Message Icon Large" className="hover-image" />
-                                        <img src={hovermail} className="hover-msg" />
-                                    </div>
-                                </div>
 
-                            )}
+                        <div className={`contact-box ${contactUs ? 'show' : ''}`}>
+                            <div className="icon-box message ">
+                                <img src={message} alt="Message Icon" />
+                                <img src={largemsg} alt="Message Icon Large" className="hover-image" />
+
+
+                                <img src={hovercall} className="hover-msg" />
+                            </div>
+                            <div className="icon-box mail">
+                                <img src={mail} alt="Mail Icon" />
+                                <img src={largemail} alt="Message Icon Large" className="hover-image" />
+                                <img src={hovermsg} className="hover-msg" />
+                            </div>
+                            <div className="icon-box call">
+                                <img src={call} alt="Call Icon" />
+                                <img src={largecall} alt="Message Icon Large" className="hover-image" />
+                                <img src={hovermail} className="hover-msg" />
+                            </div>
+                        </div>
+
+
 
                         <div className={'expandable-container'} style={{ display: showPCloudy ? 'flex' : 'none', height: `${scrollPosition >= 5700 && scrollPosition <= 6500 ? Math.min(450, ((scrollPosition - 5700) / (6500 - 5700)) * 450) : scrollPosition > 6500 ? 450 : 10}px`, }}></div>
 
@@ -415,7 +415,7 @@ const FirstFold = () => {
                                 transform: 'translate(-50%, -50%)',
                                 opacity: showPCloudy ? 1 : 0,
                                 transition: 'opacity 1s ease-out',
-                                zIndex:'3'
+                                zIndex: '3'
                             }}>
                             <img src={cloudText} alt="Cloud Text" />
                         </div>
@@ -427,7 +427,7 @@ const FirstFold = () => {
                                 left: '-800%',
                                 opacity: showPCloudy ? 1 : 0,
                                 transition: 'opacity 1s ease-out',
-                             
+
 
                             }}>
                             <div className="weather-text">Today's Weather <br /> <span>28 March 2024 </span><br /></div>
