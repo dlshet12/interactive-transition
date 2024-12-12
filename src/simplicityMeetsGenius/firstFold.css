@@ -74,8 +74,10 @@ left: 4%;
   transition: transform 0.3s ease-out, box-shadow 0.3s ease-out, opacity 0.8s ease-out;
   height: 138px;
   width: 138px;
-
-  
+}
+.circle.scale-up {
+  transform: scale(1.6); /* Match the size of the sun */
+  transition: transform 0.8s ease-out;
 }
 /* .circle-container.clicked {
 z-index: -1;
@@ -543,10 +545,6 @@ filter: blur(250px);
   }
 }
 
-.flight {
- 
-}
-
 .flight-container {
   position: absolute;
   bottom: 0;
@@ -554,9 +552,12 @@ filter: blur(250px);
   transform: translateX(-50%);
   z-index: 10;
   opacity: 0;
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  transition: opacity 0.8s ease-out, transform 1.5s ease-out, left 1.5s ease-out;
 }
-
+.flight-container.move-out {
+  left: 100%;
+  transform:translateY(250px);
+}
 .flight-container.half-flight {
   opacity: 1;
   transform: translateY(50px);
@@ -567,7 +568,6 @@ filter: blur(250px);
   opacity: 1;
   transform: translateY(0);
   animation: moveFlight 2s infinite ease-in-out;
-  /* Full-flight at default position */
 }
 
 .distance-container {

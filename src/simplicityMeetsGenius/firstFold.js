@@ -59,6 +59,9 @@ const FirstFold = () => {
     const [showInnerSuns, setShowInnerSuns] = useState(false);
     const [showClock, setShowClock] = useState(false);
     const [contactUs, setContactUs] = useState(false);
+    const [moveOut, setMoveOut] = useState(false);
+    const [scaleUp, setScaleUp] = useState(false);
+
 
     useEffect(() => {
         const handleScroll = () => {
@@ -87,6 +90,7 @@ const FirstFold = () => {
             if (position > 1500 && position <= 1800) {
                 setActiveDotIndex(1);
                 setCloudTransition(true);
+                setScaleUp(true);
                 setShowCompleteCloud(false);
             } else if (position > 2000 && position <= 2500) {
                 setCloudTransition(false); // Hide initial cloud
@@ -119,9 +123,11 @@ const FirstFold = () => {
                 setShowFlight(false);
                 setShowFullFlight(false);
                 setShowNewBackground(false);
+                setScaleUp(false);
             }
             // Sun and complete cloud move to center
             if (position > 4500 && position) {
+                setMoveOut(true);
                 setCloudTransition(false);
                 setShowBlackStrip(false);
                 setShowFullFlight(false);
@@ -129,7 +135,11 @@ const FirstFold = () => {
             } else if (position > 5000 && position <= 5500) {
                 setCloudTransition(false);
                 setShowNewBackground(true);
+           
+            } else{
+                setMoveOut(false);
             }
+
             if (position > 5500) {
                 setActiveDotIndex(2);
                 setSunCenter(true)
@@ -139,6 +149,7 @@ const FirstFold = () => {
                 setSunCenter(false);
                 setTextNextLevel(true)
                 setHumanizeText(false)
+         
             }
             if (position >= 5700 && position <= 6500) {
 
@@ -313,7 +324,7 @@ const FirstFold = () => {
                                 transition: 'opacity 1s ease-out, transform 1s ease-out',
                             }} />
 
-                        <img src={isClicked ? circle : clickedBUtton} alt='circle' className={`circle ${isClicked ? 'clicked' : ''}`}
+                        <img src={isClicked ? circle : clickedBUtton} alt='circle' className={`circle ${isClicked ? 'clicked' : ''} ${scaleUp ? 'scale-up' : ''} `}
                             style={{
                                 opacity: showNextLevel ? 0 : Math.max(1 - handOpacity, 1)
                             }}
@@ -450,10 +461,12 @@ const FirstFold = () => {
                     </div>
                     <div className="black-strip" style={{ opacity: showBlackStrip ? 1 : 0, }} >
                     </div>
-                    <div className={`flight-container ${showFlight ? "half-flight" : ""} ${showFullFlight ? "full-flight" : ""}`}
+                    <div className={`flight-container ${showFlight ? "half-flight" : ""}
+                     ${showFullFlight ? "full-flight" : ""}
+                      ${moveOut ? "move-out" : ""}`} 
                         style={{
                             transform: showBlackStrip ? 'translateY(0)' : 'translateY(50px)',
-                            transition: 'opacity 0.8s ease-out, transform 0.8s ease-out',
+                            // transition: 'opacity 0.8s ease-out, transform 0.8s ease-out',
                         }} >
                         <img src={showFlight ? halfFlight : fullFlight} alt="Flight" />
                     </div>
