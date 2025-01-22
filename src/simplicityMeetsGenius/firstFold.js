@@ -351,7 +351,7 @@ const FirstFold = () => {
                                 opacity: showPCloudy ? 1 : 0,
                                 transition: 'opacity 1s ease-out, transform 1s ease-out',
                             }}>
-                            <img src={pcloudy} alt="Partially Cloudy" style={{ opacity: transitionToBigSun ? 0 : 1, transition: 'opacity 1s ease-out, transform 1s ease-out', }} />
+                            <img src={pcloudy} alt="Partially Cloudy" className='cloudSun' style={{ opacity: transitionToBigSun ? 0 : 1, transition: 'opacity 1s ease-out, transform 1s ease-out', }} />
                             <img
                                 src={BigSun}
                                 alt="Big Sun"

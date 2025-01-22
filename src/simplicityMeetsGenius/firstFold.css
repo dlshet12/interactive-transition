@@ -668,7 +668,7 @@ filter: blur(250px);
   }
   .hand-container.clicked{
     transform: translateY(200px) !important;
-    left: 10%;
+    left: 7% !important;
   }
   .complete-cloud {
     left: -90px;
@@ -688,5 +688,54 @@ left: 0;
   .flight-height{
     height: 380px;
     width: 380px;
+  }
+  .black-strip{
+    height: 200px;
+  }
+  .distance-container{
+    bottom: 30%;
+    left: 10%;
+  }
+  .pcloudy-container{
+    transform: translate(-190%, -10%);
+    height: 180px;
+    width: 180px;
+  }
+  .cloudSun{
+    height: 400px;
+  }
+  .expandable-container{
+    width: 444px;
+right: 40%;
+bottom: -290px;
+  }
+  .cloudtext-container{
+    left: -280%;
+    top: 300%;
+  }
+  .todays-weather{
+    left: -300%;
+  }
+  .sundegree-image {
+    top: 350%;
+    right: -10%;
+  }
+  .bigsun-visible{
+    transform: translate(-40%, 50%) scale(0.6);
+  }
+  .inner-sun.main{
+    transform: translate(10%, 400%);
+  }
+  .iphone{
+    transform: translate(-55%, 150%);
+  }
+  .iwatch{
+    transform: translate(10%, 200%);
+  }
+  .inner-sun.extra.left{
+    transform: scale(1.2) translate(-120%, 150%);
+  }
+  .inner-sun.extra.right {
+    transform: scale(1.2) translate(30%, 150%);
   }
 }
