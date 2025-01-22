@@ -649,3 +649,44 @@ filter: blur(250px);
   opacity: 1;
 };
 
+@media screen and (max-width: 768px) {
+  .text-line,
+  .text-genius {
+      font-size: 32px; /* Adjust for tablets */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .text-line,
+  .text-genius {
+      font-size: 28px; /* Adjust for mobile */
+      line-height: 1.2;
+  }
+  .circle{
+    height: 100px;
+    width: 100px;
+  }
+  .hand-container.clicked{
+    transform: translateY(200px) !important;
+    left: 10%;
+  }
+  .complete-cloud {
+    left: -90px;
+left: 0;
+  }
+  .sun {
+    left: -100px;
+    width: 189px;
+    height: 189px;
+  }
+  .next-level-text {
+    left: 40%;
+  }
+  .flight-container {
+    left: 0;
+  }
+  .flight-height{
+    height: 380px;
+    width: 380px;
+  }
+}

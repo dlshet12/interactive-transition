@@ -66,6 +66,8 @@ const FirstFold = () => {
     useEffect(() => {
         const handleScroll = () => {
             const position = window.scrollY;
+            const vh = window.innerHeight;
+            
             setScrollPosition(position);
             if (position > 700 && !isClicked && position <= 1300) {
                 setIsClicked(true);
@@ -468,7 +470,7 @@ const FirstFold = () => {
                             transform: showBlackStrip ? 'translateY(0)' : 'translateY(50px)',
                             // transition: 'opacity 0.8s ease-out, transform 0.8s ease-out',
                         }} >
-                        <img src={showFlight ? halfFlight : fullFlight} alt="Flight" />
+                        <img src={showFlight ? halfFlight : fullFlight} alt="Flight"  className='flight-height'/>
                     </div>
                     <div className={`distance-container ${showFullFlight ? "visible" : ""}`}>
                         <img src={distance} alt="Distance" />
