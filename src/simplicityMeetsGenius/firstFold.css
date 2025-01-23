@@ -463,6 +463,10 @@ font-weight: 700;
 line-height: normal;
 text-transform: uppercase;
 }
+.humanize-text{
+  transform: translate(-90%, -60%) translateY(-60px);
+    opacity: 1;
+  }
 .humanize-text.show {
   transform: translate(-300%, 300%) translateY(20px);
 }
@@ -666,6 +670,9 @@ filter: blur(250px);
     height: 100px;
     width: 100px;
   }
+  .hand-container {
+    left: 7% !important;
+  }
   .hand-container.clicked{
     transform: translateY(200px) !important;
     left: 7% !important;
@@ -706,15 +713,15 @@ left: 0;
   }
   .expandable-container{
     width: 444px;
-right: 40%;
-bottom: -290px;
+   right: 40%;
+   bottom: -290px;
   }
   .cloudtext-container{
-    left: -280%;
+    left: -200% !important;
     top: 300%;
   }
   .todays-weather{
-    left: -300%;
+    left: -320% !important;
   }
   .sundegree-image {
     top: 350%;
@@ -724,16 +731,17 @@ bottom: -290px;
     transform: translate(-40%, 50%) scale(0.6);
   }
   .inner-sun.main{
-    transform: translate(10%, 400%);
+    transform: scale(2) translate(10%, 200%);
   }
   .iphone{
-    transform: translate(-55%, 150%);
+    transform: translate(-55%, 10%);
+    width: 240%;
   }
   .iwatch{
     transform: translate(10%, 200%);
   }
   .inner-sun.main.move-to-center {
-    transform: scale(3) translate(11%, -60%);
+    transform: scale(3) translate(11%, -65%);
   }
    
   .inner-sun.extra.left{
@@ -751,5 +759,14 @@ bottom: -290px;
   }
   .contact-box{
     transform: translate(-250px, 200px);
+  }
+  .future-text{
+    transform: translate(-10%, 50%) translateY(20px);
+  }
+  .build-text{
+    font-size: 36px;
+  }
+  .with-text{
+    font-size: 50px;
   }
 }
