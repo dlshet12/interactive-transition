@@ -661,10 +661,15 @@ filter: blur(250px);
 }
 
 @media screen and (max-width: 480px) {
-  .text-line,
-  .text-genius {
+  .next-level-text.show{
+    transform: translate(-50%, -30%) translateY(0);
+  }
+  .text-line {
       font-size: 28px; /* Adjust for mobile */
       line-height: 1.2;
+  }
+  .text-genius{
+    font-size: 34px;
   }
   .circle{
     height: 100px;
@@ -700,7 +705,7 @@ left: 0;
     height: 200px;
   }
   .distance-container{
-    bottom: 30%;
+    bottom: 25%;
     left: 10%;
   }
   .pcloudy-container{
@@ -761,7 +766,7 @@ left: 0;
     transform: translate(-250px, 200px);
   }
   .future-text{
-    transform: translate(-10%, 50%) translateY(20px);
+    transform: translate(-10%, 50%) translateY(100px);
   }
   .build-text{
     font-size: 36px;

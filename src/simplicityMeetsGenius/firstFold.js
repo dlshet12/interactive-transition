@@ -66,10 +66,9 @@ const FirstFold = () => {
     useEffect(() => {
         const handleScroll = () => {
             const position = window.scrollY;
-            const vh = window.innerHeight;
-            
+            const viewportHeight = window.innerHeight;
             setScrollPosition(position);
-            if (position > 700 && !isClicked && position <= 1300) {
+            if (position > viewportHeight * 0.7 && !isClicked && position <= viewportHeight * 1.3) {
                 setIsClicked(true);
                 setHasTriggered(true);
                 setTimeout(() => {
@@ -79,7 +78,7 @@ const FirstFold = () => {
                 // Show "Taking digital experience to NEXT LEVEL" text
                 //  setShowNextLevel(true);
                 //  setShowText(false); 
-            } else if (position > 1500) {
+            } else if (position > viewportHeight * 1.5) {
                 // Show "Simplicity meets GENIUS" text
                 setShowText(false);
                 setShowNextLevel(true);
@@ -89,12 +88,12 @@ const FirstFold = () => {
                 setIsClicked(false);
                 setHasTriggered(false);
             }
-            if (position > 1500 && position <= 1800) {
+            if (position > viewportHeight * 1.5 && position <= viewportHeight * 1.8) {
                 setActiveDotIndex(1);
                 setCloudTransition(true);
                 setScaleUp(true);
                 setShowCompleteCloud(false);
-            } else if (position > 2000 && position <= 2500) {
+            } else if (position > viewportHeight * 2 && position > viewportHeight * 2.5) {
                 setCloudTransition(false); // Hide initial cloud
                 setShowCompleteCloud(true);
             } else if (position > 2530 && position <= 3000) {
@@ -103,17 +102,17 @@ const FirstFold = () => {
                 setShowBlackStrip(true);
                 // setShowFlight(false)
             }
-            if (position > 3000 && position <= 4000) {
+            if (position > viewportHeight * 3 && position > viewportHeight * 4) {
                 // setShowBlackStrip(true); 
                 setShowFullFlight(true);
                 // setShowFullFlight(false);
             }
-            else if (position > 4000) {
+            else if (position > viewportHeight * 4) {
                 setShowFullFlight(true);
                 setShowNewBackground(true);
             }
             // Logic to show half-flight and transition to full-flight
-            else if (position > 1200) {
+            else if (position > viewportHeight * 1.2) {
                 // setShowFlight(false);
                 // setShowFullFlight(false)
                 // setShowFullFlight(true);
