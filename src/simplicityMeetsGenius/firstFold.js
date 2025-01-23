@@ -67,7 +67,22 @@ const FirstFold = () => {
         const handleScroll = () => {
             const position = window.scrollY;
             const viewportHeight = window.innerHeight;
+            const isMobile = window.innerWidth <= 768;
             setScrollPosition(position);
+
+             // Adjusted threshold for mobile
+        const contactUsThreshold = isMobile ? 13100 : 13000;
+
+        if (position > contactUsThreshold) {
+            setContactUs(true);
+            if (isMobile) {
+                window.scrollTo({ top: contactUsThreshold, behavior: 'smooth' });
+            }
+        } else {
+            setContactUs(false);
+        }
+        
+
             if (position > viewportHeight * 0.7 && !isClicked && position <= viewportHeight * 1.3) {
                 setIsClicked(true);
                 setHasTriggered(true);
