@@ -661,6 +661,13 @@ filter: blur(250px);
 }
 
 @media screen and (max-width: 480px) {
+  .animation-container {
+    background-size: cover;
+  }
+  .logo{
+    left: 5%;
+    bottom: 92%;
+  }
   .next-level-text.show{
     transform: translate(-50%, -30%) translateY(0);
   }
@@ -709,27 +716,27 @@ left: 0;
     left: 10%;
   }
   .pcloudy-container{
-    transform: translate(-190%, -10%);
+    transform: translate(-207%, 12%);
     height: 180px;
     width: 180px;
   }
   .cloudSun{
-    height: 400px;
+    height: 372px;
   }
   .expandable-container{
-    width: 444px;
-   right: 40%;
-   bottom: -290px;
+    width: 412px;
+   right: 20%;
+   bottom: -329px;
   }
   .cloudtext-container{
     left: -200% !important;
-    top: 300%;
+    top: 295% !important;
   }
   .todays-weather{
     left: -320% !important;
   }
   .sundegree-image {
-    top: 350%;
+    top: 376%;
     right: -10%;
   }
   .bigsun-visible{
@@ -746,24 +753,24 @@ left: 0;
     transform: translate(10%, 200%);
   }
   .inner-sun.main.move-to-center {
-    transform: scale(3) translate(11%, -65%);
+    transform: scale(3) translate(11%, -52%);
   }
    
   .inner-sun.extra.left{
-    transform: scale(3) translate(-30%, 50%);
+    transform: scale(3) translate(-16%, 54%);
   }
   .inner-sun.extra.right {
-    transform: scale(3) translate(50%, 50%);
+    transform: scale(3) translate(41%, 54%);
   }
   .clock{
-    transform: translate(-160%, 100%);
+    transform: translate(-177%, 128%);
     height: 200px;
   }
   .inner-sun.extra{
-    transform: scale(2.2) translate(-50%, 30%);
+    transform: scale(3) translate(-36%, 53%);
   }
   .contact-box{
-    transform: translate(-250px, 200px);
+    transform: translate(-290px, 241px);
   }
   .future-text{
     transform: translate(-10%, 50%) translateY(100px);
