@@ -83,7 +83,7 @@ const FirstFold = () => {
         }
         
 
-            if (position > viewportHeight * 0.7 && !isClicked && position <= viewportHeight * 1.3) {
+            if (position > 700 && !isClicked && position <= 1300) {
                 setIsClicked(true);
                 setHasTriggered(true);
                 setTimeout(() => {
@@ -93,7 +93,7 @@ const FirstFold = () => {
                 // Show "Taking digital experience to NEXT LEVEL" text
                 //  setShowNextLevel(true);
                 //  setShowText(false); 
-            } else if (position > viewportHeight * 1.5) {
+            } else if (position > 1500) {
                 // Show "Simplicity meets GENIUS" text
                 setShowText(false);
                 setShowNextLevel(true);
@@ -103,12 +103,12 @@ const FirstFold = () => {
                 setIsClicked(false);
                 setHasTriggered(false);
             }
-            if (position > viewportHeight * 1.5 && position <= viewportHeight * 1.8) {
+            if (position >  1500 && position <=  1800) {
                 setActiveDotIndex(1);
                 setCloudTransition(true);
                 setScaleUp(true);
                 setShowCompleteCloud(false);
-            } else if (position > viewportHeight * 2 && position > viewportHeight * 2.5) {
+            } else if (position > 2000 && position > 2500) {
                 setCloudTransition(false); // Hide initial cloud
                 setShowCompleteCloud(true);
             } else if (position > 2530 && position <= 3000) {
@@ -117,17 +117,17 @@ const FirstFold = () => {
                 setShowBlackStrip(true);
                 // setShowFlight(false)
             }
-            if (position > viewportHeight * 3 && position > viewportHeight * 4) {
-                // setShowBlackStrip(true); 
+            if (position >  3000 && position >  4000) {
+                setShowBlackStrip(true); 
                 setShowFullFlight(true);
                 // setShowFullFlight(false);
             }
-            else if (position > viewportHeight * 4) {
+            else if (position > 4000) {
                 setShowFullFlight(true);
                 setShowNewBackground(true);
             }
             // Logic to show half-flight and transition to full-flight
-            else if (position > viewportHeight * 1.2) {
+            else if (position >  1200) {
                 // setShowFlight(false);
                 // setShowFullFlight(false)
                 // setShowFullFlight(true);
